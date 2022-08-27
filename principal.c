@@ -26,6 +26,26 @@ int main (void){
 
 void tela_login(void){
 
+    char user[30], pass[30];
+
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///                      OLÁ, SEJA BEM-VINDO AO SIG-LAW                    ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+ 
+    printf("Digite seu usuário: ");
+    scanf("%s", user);
+ 
+    printf("Digite sua senha: ");
+    scanf("%s", pass);
+ 
+    printf("Usuário: %s, Senha: %s\n", user, pass);
+    return 0;
+
+    //a tela principal (menu), abrirá assim que as credenciais corretas forem digitadas
+
 }
 
 void tela_principal(void){
@@ -33,6 +53,6 @@ void tela_principal(void){
 }
 
 void tela_sobre(void){
-    
+
 }
 
