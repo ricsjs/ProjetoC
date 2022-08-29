@@ -19,7 +19,7 @@ void login(void){
     
     return 0;
 
-    // a tela principal (menu), abrirá assim que as credenciais corretas forem digitadas
+    //a tela principal (menu), abrirá assim que as credenciais corretas forem digitadas
 
 }
 
