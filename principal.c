@@ -5,6 +5,9 @@
 void login(void);
 void principal(void);
 void sobre(void);
+void area_advogado(void);
+void area_cliente(void);
+void agenda_geral(void);
 
 void login(void){
 
@@ -52,6 +55,18 @@ void login(void){
     printf("4 - SOBRE O PROGRAMA;");
     printf("0 - SAIR;");
 
+}
+
+void area_advogado(void){
+
+}
+
+void area_cliente(void){
+
+}
+
+void agenda_geral(void){
+    
 }
 
 void sobre(void){
