@@ -1,7 +1,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-//assinatura das telas
+//assinatura de telas
 void login(void);
 void principal(void);
 void sobre(void);
