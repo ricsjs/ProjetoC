@@ -22,7 +22,6 @@ void login(void){
     printf("Digite sua senha: ");
     scanf("%s", pass);
     
-    return 0;
 
     //a tela principal (menu), abrirá assim que as credenciais corretas forem digitadas
 
@@ -52,7 +51,6 @@ void login(void){
     printf("3 - AGENDA GERAL;");
     printf("4 - SOBRE O PROGRAMA;");
     printf("0 - SAIR;");
-    return 0;
 
 }
 
@@ -100,7 +98,6 @@ void sobre(void){
     printf("| SOBRE O PROGRAMA;                      |\n");
     printf("|                                        |\n");
     printf("==========================================\n");
-    return 0;
 
 }
 
@@ -111,6 +108,4 @@ int main(void){
     principal();
 
     sobre();
-
-    return 0;
 } 
