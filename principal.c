@@ -1,6 +1,11 @@
 # include <stdio.h>
 # include <stdlib.h>
 
+//assinatura das telas
+void login(void);
+void principal(void);
+void sobre(void);
+
 void login(void){
 
     char user[30], pass[30];
