@@ -8,10 +8,39 @@ void sobre(void);
 void area_advogado(void);
 void area_cliente(void);
 void agenda_geral(void);
+void valor(void);
+
+void valor(){
+    int v;
+    printf("Digite o numero referente a area que deseja proseguir: ");
+    scanf("%i", &v);
+
+    if (v == 1){
+        area_advogado();
+    }
+    else if(v == 2){
+       area_cliente();
+    }
+    else if (v == 3){
+       agenda_geral();
+    }
+    else if (v == 4){
+       sobre();
+    }
+    else if (v == 0){
+        printf("Programa finalizado");
+    }
+    else {
+        printf("valor invalido");
+    }
+    return 0;
+
+
+}
 
 void login(void){
 
-    char user[30], pass[30];
+    char user, pass;
 
     printf("==================================\n");
     printf("|                                |\n");
@@ -49,23 +78,59 @@ void login(void){
     printf("=============================================================\n");
     printf("|                            MENU                           |\n");
     printf("=============================================================\n");
-    printf("1 - ÁREA DO ADVOGADO;");
-    printf("2 - ÁREA DO CLIENTE;");
-    printf("3 - AGENDA GERAL;");
-    printf("4 - SOBRE O PROGRAMA;");
-    printf("0 - SAIR;");
+    printf("| 1 - ÁREA DO ADVOGADO;                                     |\n");
+    printf("| 2 - ÁREA DO CLIENTE;                                      |\n");
+    printf("| 3 - AGENDA GERAL;                                         |\n");
+    printf("| 4 - SOBRE O PROGRAMA;                                     |\n");
+    printf("| 0 - SAIR;                                                 |\n");
+    printf("=============================================================\n");
+
+    
 
 }
 
+
 void area_advogado(void){
+
+    printf("==========================================\n");
+    printf("|             AREA DO ADVOGADO           |\n");
+    printf("==========================================\n");
+    printf("|                                        |\n");
+    printf("| 1 - LISTAR ADVOGADOS                   |\n");
+    printf("| 2 - CADASTRAR ADVOGADO                 |\n");
+    printf("| 3 - REMOVER ADVOGADO                   |\n");
+    printf("| 4 - AGENDO DO ADVOGADO                 |\n");
+    printf("| 0 - VOLTAR                             |\n");
+    printf("==========================================\n");
 
 }
 
 void area_cliente(void){
 
+    printf("==========================================\n");
+    printf("|             AREA DO CLIENTE            |\n");
+    printf("==========================================\n");
+    printf("|                                        |\n");
+    printf("| 1 - LISTAR CLIENTES                    |\n");
+    printf("| 2 - CADASTRAR CLIENTE                  |\n");
+    printf("| 3 - REMOVER CLIENTE                    |\n");
+    printf("| 4 - AGENDO DO CLIENTE                  |\n");
+    printf("| 0 - VOLTAR                             |\n");
+    printf("==========================================\n");
 }
 
 void agenda_geral(void){
+
+    printf("==========================================\n");
+    printf("|             AGENDA GERAL               |\n");
+    printf("==========================================\n");
+    printf("|                                        |\n");
+    printf("| 1 - LISTAR EVENTOS DO DIA              |\n");
+    printf("| 2 - LISTAR EVENTOS DA SEMANA           |\n");
+    printf("| 3 - LISTAR EVENTOS DO MÊS              |\n");
+    printf("| 4 - CADASTRA NOVO EVENTO               |\n");
+    printf("| 0 - VOLTAR                             |\n");
+    printf("==========================================\n");
     
 }
 
@@ -122,5 +187,7 @@ int main(void){
     
     principal();
 
-    sobre();
+    valor();
+
+    return 0;
 } 
