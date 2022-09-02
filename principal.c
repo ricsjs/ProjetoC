@@ -26,6 +26,12 @@ void login(void){
     printf("Digite sua senha: \n");
     scanf("%s", &pass);
 
+    if(user != 'u' && pass != 'p'){
+        printf("inválido");
+    }else{
+        printf("lalala\n");
+    }
+
     //a tela principal (menu), abrirá assim que as credenciais corretas forem digitadas
 
 }
