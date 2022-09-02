@@ -1,42 +1,14 @@
 # include <stdio.h>
 # include <stdlib.h>
 
-//assinatura das telas
+//assinatura de telas
 void login(void);
 void principal(void);
 void sobre(void);
 void area_advogado(void);
 void area_cliente(void);
 void agenda_geral(void);
-void valor(void);
 
-void valor(){
-    int v;
-    printf("Digite o numero referente a area que deseja proseguir: ");
-    scanf("%i", &v);
-
-    if (v == 1){
-        area_advogado();
-    }
-    else if(v == 2){
-       area_cliente();
-    }
-    else if (v == 3){
-       agenda_geral();
-    }
-    else if (v == 4){
-       sobre();
-    }
-    else if (v == 0){
-        printf("Programa finalizado");
-    }
-    else {
-        printf("valor invalido");
-    }
-    return 0;
-
-
-}
 
 void login(void){
 
@@ -48,12 +20,11 @@ void login(void){
     printf("|                                |\n");
     printf("==================================\n");
 
-    printf("Digite seu usuário: ");
+    printf("Digite seu nome de usuário: \n");
     scanf("%s", &user);
- 
-    printf("Digite sua senha: ");
+
+    printf("Digite sua senha: \n");
     scanf("%s", &pass);
-    
 
     //a tela principal (menu), abrirá assim que as credenciais corretas forem digitadas
 
@@ -172,8 +143,8 @@ void sobre(void){
     printf("| hajam imprevistos com horários.        |\n");
     printf("|                                        |\n");
     printf("| O sistema deve contar com:             |\n");
-    printf("| ÁREA DO ADVOGADO;                      |\n");
-    printf("| ÁREA DO CLIENTE;                       |\n");
+    printf("| Área do adovado;                       |\n");
+    printf("| Área do cliente;                       |\n");
     printf("| AGENDA GERAL;                          |\n");
     printf("| SOBRE O PROGRAMA;                      |\n");
     printf("|                                        |\n");
@@ -184,10 +155,10 @@ void sobre(void){
 int main(void){
 
     login();
-    
     principal();
+    area_advogado();
+    area_cliente();
+    agenda_geral();
+    sobre();
 
-    valor();
-
-    return 0;
 } 
