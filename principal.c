@@ -49,10 +49,10 @@ void login(void){
     printf("==================================\n");
 
     printf("Digite seu usuário: ");
-    scanf("%s", user);
+    scanf("%s", &user);
  
     printf("Digite sua senha: ");
-    scanf("%s", pass);
+    scanf("%s", &pass);
     
 
     //a tela principal (menu), abrirá assim que as credenciais corretas forem digitadas
@@ -172,8 +172,8 @@ void sobre(void){
     printf("| hajam imprevistos com horários.        |\n");
     printf("|                                        |\n");
     printf("| O sistema deve contar com:             |\n");
-    printf("| Área do adovado;                       |\n");
-    printf("| Área do cliente;                       |\n");
+    printf("| ÁREA DO ADVOGADO;                      |\n");
+    printf("| ÁREA DO CLIENTE;                       |\n");
     printf("| AGENDA GERAL;                          |\n");
     printf("| SOBRE O PROGRAMA;                      |\n");
     printf("|                                        |\n");
