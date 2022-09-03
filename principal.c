@@ -35,11 +35,8 @@ void login(void){
         scanf("%s", &pass);
     }
 
-    if(user != 'u' && pass != 'p'){
-        printf("Usuário inválido");
-    }else{
-        principal();
-    }
+    printf("Usuário logado com sucesso!\n");
+    principal();
 
     //a tela principal (menu), abrirá assim que as credenciais corretas forem digitadas
 
