@@ -26,6 +26,21 @@ void login(void){
     printf("Digite sua senha: \n");
     scanf("%s", &pass);
 
+    while (user != 'u' && pass != 'p'){
+        printf("Credenciais inválidas, tente novamente: \n");
+        printf("Digite seu nome de usuário: \n");
+        scanf("%s", &user);
+
+        printf("Digite sua senha: \n");
+        scanf("%s", &pass);
+    }
+
+    if(user != 'u' && pass != 'p'){
+        printf("Usuário inválido");
+    }else{
+        principal();
+    }
+
     //a tela principal (menu), abrirá assim que as credenciais corretas forem digitadas
 
 }
@@ -34,7 +49,7 @@ void login(void){
  void principal(void){
 
     printf("=============================================================\n");
-    printf("|                         Semana 1                          |\n");
+    printf("|                         Semana 2                          |\n");
     printf("=============================================================\n");
     printf("|                                                           |\n");
     printf("|    Universidade Federal do Rio Grande do Norte            |\n");
@@ -56,7 +71,12 @@ void login(void){
     printf("| 0 - SAIR;                                                 |\n");
     printf("=============================================================\n");
 
-    
+    int opc;
+
+    printf("Digite o número de uma opção: ");
+    scanf("%i", &opc);
+
+    printf("%i", opc);
 
 }
 
@@ -64,13 +84,13 @@ void login(void){
 void area_advogado(void){
 
     printf("==========================================\n");
-    printf("|             AREA DO ADVOGADO           |\n");
+    printf("|             ÁREA DO ADVOGADO           |\n");
     printf("==========================================\n");
     printf("|                                        |\n");
     printf("| 1 - LISTAR ADVOGADOS                   |\n");
     printf("| 2 - CADASTRAR ADVOGADO                 |\n");
     printf("| 3 - REMOVER ADVOGADO                   |\n");
-    printf("| 4 - AGENDO DO ADVOGADO                 |\n");
+    printf("| 4 - AGENDA DO ADVOGADO                 |\n");
     printf("| 0 - VOLTAR                             |\n");
     printf("==========================================\n");
 
@@ -79,13 +99,13 @@ void area_advogado(void){
 void area_cliente(void){
 
     printf("==========================================\n");
-    printf("|             AREA DO CLIENTE            |\n");
+    printf("|             ÁREA DO CLIENTE            |\n");
     printf("==========================================\n");
     printf("|                                        |\n");
     printf("| 1 - LISTAR CLIENTES                    |\n");
     printf("| 2 - CADASTRAR CLIENTE                  |\n");
     printf("| 3 - REMOVER CLIENTE                    |\n");
-    printf("| 4 - AGENDO DO CLIENTE                  |\n");
+    printf("| 4 - AGENDA DO CLIENTE                  |\n");
     printf("| 0 - VOLTAR                             |\n");
     printf("==========================================\n");
 }
@@ -99,7 +119,7 @@ void agenda_geral(void){
     printf("| 1 - LISTAR EVENTOS DO DIA              |\n");
     printf("| 2 - LISTAR EVENTOS DA SEMANA           |\n");
     printf("| 3 - LISTAR EVENTOS DO MÊS              |\n");
-    printf("| 4 - CADASTRA NOVO EVENTO               |\n");
+    printf("| 4 - CADASTRAR NOVO EVENTO              |\n");
     printf("| 0 - VOLTAR                             |\n");
     printf("==========================================\n");
     
@@ -155,10 +175,5 @@ void sobre(void){
 int main(void){
 
     login();
-    principal();
-    area_advogado();
-    area_cliente();
-    agenda_geral();
-    sobre();
 
 } 
