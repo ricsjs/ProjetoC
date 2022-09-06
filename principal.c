@@ -110,7 +110,9 @@ void login(void){
     
 
 }
-
+/////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////// A D V O G A D O /////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////
 
 void area_advogado(void){
     system("clear||cls");
@@ -125,7 +127,27 @@ void area_advogado(void){
     printf("| 5 - REMOVER ADVOGADO                   |\n");
     printf("| 0 - VOLTAR                             |\n");
     printf("==========================================\n");
-    getchar();
+    int opc;
+
+    printf("Digite o número de uma opção: ");
+    scanf("%i", &opc);
+
+    printf("%i", opc);
+
+    if (opc == 1){
+        pesquisar_advogado();
+    }else if (opc == 2){
+        cadastrar_advogado();
+    }else if(opc == 3){
+        editar_advogado();
+    }else if(opc == 4){
+        agenda_advogado();
+    }else if(opc == 5){
+        remover_advogado();
+    }else if(opc == 0){
+        principal();
+    }
+
 
 }
 
@@ -260,8 +282,9 @@ void remover_advogado(void) {
     printf("\n");
     getchar();
 }
-
-
+///////////////////////////////////////////////////////////////////////////
+////////////////////////////// C L I E N T E //////////////////////////////
+///////////////////////////////////////////////////////////////////////////
 void area_cliente(void){
 
     printf("==========================================\n");
