@@ -10,14 +10,14 @@ void area_cliente(void);
 void agenda_geral(void);
 void pesquisar_advogado(void);
 void cadastrar_advogado(void);
-void excluir_advogado(void);
-void agenda_advogado(void);
 void editar_advogado(void);
+void agenda_advogado(void);
+void excluir_advogado(void);
 void pesquisar_cliente(void);
 void cadastrar_cliente(void);
-void excluir_cliente(void);
-void agenda_cliente(void);
 void editar_cliente(void);
+void agenda_cliente(void);
+void excluir_cliente(void);
 void listar_eventos(void);
 void cadastrar_evento(void);
 void editar_evento(void);
@@ -120,9 +120,9 @@ void area_advogado(void){
     printf("|                                        |\n");
     printf("| 1 - PESQUISAR ADVOGADO                 |\n");
     printf("| 2 - CADASTRAR ADVOGADO                 |\n");
-    printf("| 3 - REMOVER ADVOGADO                   |\n");
+    printf("| 3 - EDITAR ADVOGADO                    |\n");
     printf("| 4 - AGENDA DO ADVOGADO                 |\n");
-    printf("| 5 - EDITAR ADVOGADO                    |\n");
+    printf("| 5 - REMOVER ADVOGADO                   |\n");
     printf("| 0 - VOLTAR                             |\n");
     printf("==========================================\n");
     getchar();
@@ -184,7 +184,7 @@ void cadastrar_advogado(){
     getchar();
 }
 
-void remover_advogado(void) {
+void editar_advogado(){
     system("clear||cls");
     printf("\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -199,10 +199,9 @@ void remover_advogado(void) {
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///            = = = = = = =  REMOVER ADVOGADO = = = = = = = =              ///\n");
+    printf("///          Informe o token do advogado que você deseja editar:            ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
-    printf("///            Informe o token do advogado (apenas números):                ///\n");
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
@@ -236,9 +235,31 @@ void agenda_advogado(void){
     getchar();
 }
 
-//criar editar_advogado();
-//as assinaturas já foram feitas
-
+void remover_advogado(void) {
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///            ===================================================          ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
+    printf("///            = = = = = = =         SIG-LAW         = = = = = = =          ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
+    printf("///            ===================================================          ///\n");
+    printf("///          Developed by @ricsjs & @janderson1111 -- since Ago, 2022       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///            = = = = = = =  REMOVER ADVOGADO = = = = = = = =              ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///                                                                         ///\n");
+    printf("///            Informe o token do advogado (apenas números):                ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    getchar();
+}
 
 
 void area_cliente(void){
@@ -249,9 +270,9 @@ void area_cliente(void){
     printf("|                                        |\n");
     printf("| 1 - PESQUISAR CLIENTE                  |\n");
     printf("| 2 - CADASTRAR CLIENTE                  |\n");
-    printf("| 3 - REMOVER CLIENTE                    |\n");
+    printf("| 3 - EDITAR CLIENTE                     |\n");
     printf("| 4 - AGENDA DO CLIENTE                  |\n");
-    printf("| 4 - EDITAR CLIENTE                     |\n");
+    printf("| 5 - REMOVER CLIENTE                    |\n");
     printf("| 0 - VOLTAR                             |\n");
     printf("==========================================\n");
 }
@@ -313,6 +334,14 @@ void cadastrar_cliente(void){
     getchar();
 }
 
+    void editar_cliente(){
+
+    }
+
+    void agenda_cliente(){
+
+    }
+
 void remover_cliente(void ){
     system("clear||cls");
     printf("\n");
@@ -339,10 +368,6 @@ void remover_cliente(void ){
     getchar();
 }
 
-
-//criar agenda_cliente();
-//criar editar_cliente();
-//as assinaturas já foram feitas
 
 void agenda_geral(void){
 
@@ -468,7 +493,6 @@ void remover_evento(void){
     getchar();
 }
 
-//as assinaturas já estão criadas
 
 void sobre(void){
     system("clear||cls");
