@@ -127,10 +127,10 @@ void pesquisar_advogado(void){
     printf("///                                                                         ///\n");
     printf("///            ===================================================          ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
-    printf("///            = = = = = = =           SIG-LAW         = = = = = =          ///\n");
+    printf("///            = = = = = = =         SIG-LAW         = = = = = = =          ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
     printf("///            ===================================================          ///\n");
-    printf("///          Developed by @ricsjs & @janderson1111 -- since Mar, 2020       ///\n");
+    printf("///          Developed by @ricsjs & @janderson1111 -- since Ago, 2022       ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
@@ -153,10 +153,10 @@ void cadastrar_advogado(){
     printf("///                                                                         ///\n");
     printf("///            ===================================================          ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
-    printf("///            = = = = = = =           SIG-LAW         = = = = = =          ///\n");
+    printf("///            = = = = = = =         SIG-LAW         = = = = = = =          ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
     printf("///            ===================================================          ///\n");
-    printf("///          Developed by @ricsjs & @janderson1111 -- since Mar, 2020       ///\n");
+    printf("///          Developed by @ricsjs & @janderson1111 -- since Ago, 2022       ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
@@ -176,7 +176,32 @@ void cadastrar_advogado(){
     getchar();
 }
 
-//criar remover_adovado();
+void remover_advogado(void) {
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///            ===================================================          ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
+    printf("///            = = = = = = =         SIG-LAW         = = = = = = =          ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
+    printf("///            ===================================================          ///\n");
+    printf("///          Developed by @ricsjs & @janderson1111 -- since Ago, 2022       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///            = = = = = = =  Remover Advogado = = = = = = = =              ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///                                                                         ///\n");
+    printf("///            Informe o token do advogado (apenas números):                ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    getchar();
+}
+
 //criar agenda_advogado();
 //criar editar_advogado();
 //as assinaturas já foram feitas
@@ -252,8 +277,8 @@ void sobre(void){
     printf("| hajam imprevistos com horários.        |\n");
     printf("|                                        |\n");
     printf("| O sistema deve contar com:             |\n");
-    printf("| Área do adovado;                       |\n");
-    printf("| Área do cliente;                       |\n");
+    printf("| ÁREA DO ADVOGADO;                      |\n");
+    printf("| ÁREA DO CLIENTE;                       |\n");
     printf("| AGENDA GERAL;                          |\n");
     printf("| SOBRE O PROGRAMA;                      |\n");
     printf("|                                        |\n");
