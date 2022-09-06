@@ -18,6 +18,10 @@ void cadastrar_cliente(void);
 void excluir_cliente(void);
 void agenda_cliente(void);
 void editar_cliente(void);
+void listar_eventos(void);
+void cadastrar_evento(void);
+void editar_evento(void);
+void remover_evento(void);
 
 int main(void){
 
@@ -147,7 +151,6 @@ void pesquisar_advogado(void){
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
     getchar();
 }
 
@@ -166,7 +169,7 @@ void cadastrar_advogado(){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///            = = = = = = =  Cadastrar Advogado = = = = = = =              ///\n");
+    printf("///            = = = = = = =  CADASTRAR ADVOGADO = = = = = = =              ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Token (apenas números):                                      ///\n");
@@ -196,7 +199,7 @@ void remover_advogado(void) {
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///            = = = = = = =  Remover Advogado = = = = = = = =              ///\n");
+    printf("///            = = = = = = =  REMOVER ADVOGADO = = = = = = = =              ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Informe o token do advogado (apenas números):                ///\n");
@@ -251,7 +254,7 @@ void pesquisar_cliente(void){
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+
     getchar();
 }
 
@@ -270,7 +273,7 @@ void cadastrar_cliente(void){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///            = = = = = = =  Cadastrar Cliente  = = = = = = =              ///\n");
+    printf("///            = = = = = = =  CADASTRAR CLIENTE  = = = = = = =              ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Token (apenas números):                                      ///\n");
@@ -296,15 +299,70 @@ void agenda_geral(void){
     printf("|             AGENDA GERAL               |\n");
     printf("==========================================\n");
     printf("|                                        |\n");
-    printf("| 1 - LISTAR EVENTOS DO DIA              |\n");
-    printf("| 2 - LISTAR EVENTOS DA SEMANA           |\n");
-    printf("| 3 - LISTAR EVENTOS DO MÊS              |\n");
-    printf("| 4 - CADASTRAR NOVO EVENTO              |\n");
-    printf("| 5 - EXCLUIR EVENTO                     |\n");
+    printf("| 1 - LISTAR EVENTOS                     |\n");
+    printf("| 2 - CADASTRAR NOVO EVENTO              |\n");
+    printf("| 3 - EDITAR EVENTO                      |\n");
+    printf("| 4 - EXCLUIR EVENTO                     |\n");
     printf("| 0 - VOLTAR                             |\n");
     printf("==========================================\n");
     
 }
+
+void listar_eventos(){
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///            ===================================================          ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
+    printf("///            = = = = = = =         SIG-LAW         = = = = = = =          ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
+    printf("///            ===================================================          ///\n");
+    printf("///          Developed by @ricsjs & @janderson1111 -- since Ago, 2022       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///                            LISTAGEM DE EVENTOS                          ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    getchar();
+}
+
+void cadastrar_evento(void){
+    system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///            ===================================================          ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
+    printf("///            = = = = = = =         SIG-LAW         = = = = = = =          ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
+    printf("///            ===================================================          ///\n");
+    printf("///          Developed by @ricsjs & @janderson1111 -- since Ago, 2022       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///            = = = = = = =  CADASTRAR EVENTO   = = = = = = =              ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///                                                                         ///\n");
+    printf("///            Nome do evento:                                              ///\n");
+    printf("///            Data do evento (dd/mm/aaaa):                                 ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    getchar();
+}
+
+//criar editar_evento();
+//criar remover_evento();
+//as assinaturas já estão criadas
 
 void sobre(void){
     system("clear||cls");
