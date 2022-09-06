@@ -95,7 +95,7 @@ void login(void){
     }else if(opc == 4){
         sobre();
     }else if(opc == 0){
-        exit;
+        printf("Encerrando programa...\n");
     }
     
     
