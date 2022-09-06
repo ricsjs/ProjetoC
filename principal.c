@@ -8,6 +8,10 @@ void sobre(void);
 void area_advogado(void);
 void area_cliente(void);
 void agenda_geral(void);
+void listar_advogados(void);
+void cadastrar_advogado(void);
+void excluir_advogado(void);
+void agenda_advogado(void);
 
 
 void login(void){
@@ -75,6 +79,12 @@ void login(void){
 
     printf("%i", opc);
 
+    if (opc == 1)
+    {
+        listar_advogados();
+    }
+    
+
 }
 
 
@@ -91,6 +101,32 @@ void area_advogado(void){
     printf("| 0 - VOLTAR                             |\n");
     printf("==========================================\n");
 
+}
+
+void listar_advogados(void){
+     system("clear||cls");
+    printf("\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///            ===================================================          ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
+    printf("///            = = = =                SIG-LAW              = = = =          ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
+    printf("///            ===================================================          ///\n");
+    printf("///          Developed by @ricsjs & @janderson1111 -- since Mar, 2020       ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("///                                                                         ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///            = = = = = = = = Listar Advogados = = = = = = = =             ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///                                                                         ///\n");
+    printf("///////////////////////////////////////////////////////////////////////////////\n");
+    printf("\n");
+    printf("\t\t\t>>> Tecle <ENTER> para continuar...\n");
+    getchar();
 }
 
 void area_cliente(void){
