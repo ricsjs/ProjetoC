@@ -351,9 +351,11 @@ void cadastrar_evento(void){
     printf("///            = = = = = = =  CADASTRAR EVENTO   = = = = = = =              ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
+    printf("///            Digite um Token para o evento:                               ///\n");
     printf("///            Nome do evento:                                              ///\n");
     printf("///            Data do evento (dd/mm/aaaa):                                 ///\n");
-    printf("///                                                                         ///\n");
+    printf("///            Token do Advogado:                                           ///\n");
+    printf("///            Token do Cliente:                                            ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
@@ -408,7 +410,14 @@ void sobre(void){
     printf("| SOBRE O PROGRAMA;                      |\n");
     printf("|                                        |\n");
     printf("==========================================\n");
-    getchar();
-
+    
+    char esco;
+    printf("Voce deseja voltar ao menu principl? (s/n)\n");
+    scanf("%s", &esco);
+    if (esco == 's'){
+        principal();
+    }else{
+        printf("programa finalizado");
+    }
+    
 }
- 
