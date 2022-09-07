@@ -727,10 +727,10 @@ void sobre(void){
     printf("|                                        |\n");
     printf("==========================================\n");
     
-    char esco;
+    char opc;
     printf("Voce deseja voltar ao menu principl? (s/n)\n");
-    scanf("%s", &esco);
-    if (esco == 's'){
+    scanf("%s", &opc);
+    if (opc == 's'){
         principal();
     }else{
         printf("programa finalizado");
