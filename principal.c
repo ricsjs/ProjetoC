@@ -17,7 +17,7 @@ void pesquisar_cliente(void);
 void cadastrar_cliente(void);
 void editar_cliente(void);
 void agenda_cliente(void);
-void excluir_cliente(void);
+void remover_cliente(void);
 void listar_eventos(void);
 void cadastrar_evento(void);
 void editar_evento(void);
@@ -93,23 +93,22 @@ void login(void){
     scanf("%i", &opc);
 
 
-while (opc != 0)
-{
+    while (opc != 0){
 
-    if (opc == 1){
-        area_advogado();
-        break;
-    }else if (opc == 2){
-        area_cliente();
-        break;
-    }else if(opc == 3){
-        agenda_geral();
-        break;
-    }else if(opc == 4){
-        sobre();
-        break;
-    }
-}  
+        if (opc == 1){
+            area_advogado();
+            break;
+        }else if (opc == 2){
+            area_cliente();
+            break;
+        }else if(opc == 3){
+            agenda_geral();
+            break;
+        }else if(opc == 4){
+            sobre();
+            break;
+        }
+    }  
 
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -129,6 +128,7 @@ void area_advogado(void){
     printf("| 5 - REMOVER ADVOGADO                   |\n");
     printf("| 0 - VOLTAR                             |\n");
     printf("==========================================\n");
+    
     int opc;
 
     printf("Digite o número de uma opção: ");
@@ -165,12 +165,16 @@ void pesquisar_advogado(void){
     printf("///            ===================================================          ///\n");
     printf("///          Developed by @ricsjs & @janderson1111 -- since Ago, 2022       ///\n");
     printf("///                                                                         ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///                          PESQUISAR ADVOGADO                             ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     int token;
-    printf("Informe o token do advogado para pesquisa (apenas números): \n");
+    printf("Informe o token do advogado para pesquisar (apenas números): \n");
     scanf("%i", &token);
     getchar();
-    printf("função ainda em desenvolvimento, aperte enter para voltar a area do advogado");
+    printf("Função ainda em desenvolvimento, aperte enter para voltar para área do advogado");
     getchar();
     area_advogado();
 }
@@ -213,7 +217,7 @@ void cadastrar_advogado(){
     printf("Celular  (apenas números): \n");
     scanf("%i", &celular);
     getchar();
-    printf("Advogado cadastrado com sucesso !!!");
+    printf("Advogado cadastrado com sucesso!!!");
     getchar();
     area_advogado();
 
@@ -231,12 +235,16 @@ void editar_advogado(){
     printf("///            ===================================================          ///\n");
     printf("///          Developed by @ricsjs & @janderson1111 -- since Ago, 2022       ///\n");
     printf("///                                                                         ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///                             EDITAR ADVOGADO                             ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    int tokem;
+    int token;
     printf("Informe o token do advogado para editar (apenas números): \n");
-    scanf("%i", &tokem);
+    scanf("%i", &token);
     getchar();
-    printf("função ainda em desenvolvimento, aperte enter para voltar a area do advogado");
+    printf("Função ainda em desenvolvimento, aperte enter para voltar para área do advogado");
     getchar();
     area_advogado();
 }
@@ -253,12 +261,16 @@ void agenda_advogado(void){
     printf("///            ===================================================          ///\n");
     printf("///          Developed by @ricsjs & @janderson1111 -- since Ago, 2022       ///\n");
     printf("///                                                                         ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///                            AGENDA DO ADVOGADO                           ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    int tokem;
+    int token;
     printf("Informe o token do advogado para acessar a agenda (apenas números): \n");
-    scanf("%i", &tokem);
+    scanf("%i", &token);
     getchar();
-    printf("função ainda em desenvolvimento, aperte enter para voltar a area do advogado");
+    printf("Função ainda em desenvolvimento, aperte enter para voltar para área do advogado");
     getchar();
     area_advogado();
 }
@@ -275,15 +287,21 @@ void remover_advogado(void) {
     printf("///            ===================================================          ///\n");
     printf("///          Developed by @ricsjs & @janderson1111 -- since Ago, 2022       ///\n");
     printf("///                                                                         ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///                            REMOVER ADVOGADO                             ///\n");
+    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
+    printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
-    int tokem;
+    int token;
     printf("Informe o token do advogado para remover (apenas números): \n");
-    scanf("%i", &tokem);
+    scanf("%i", &token);
     getchar();
-    printf("função ainda em desenvolvimento, aperte enter para voltar a area do advogado");
+    printf("Função ainda em desenvolvimento, aperte enter para voltar para área do advogado");
     getchar();
     area_advogado();
 }
+
+
 ///////////////////////////////////////////////////////////////////////////
 ////////////////////////////// C L I E N T E //////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
@@ -300,6 +318,27 @@ void area_cliente(void){
     printf("| 5 - REMOVER CLIENTE                    |\n");
     printf("| 0 - VOLTAR                             |\n");
     printf("==========================================\n");
+
+    int opc;
+
+    printf("Digite o número de uma opção: ");
+    scanf("%i", &opc);
+
+    printf("%i", opc);
+
+    if (opc == 1){
+        pesquisar_cliente();
+    }else if (opc == 2){
+        cadastrar_cliente();
+    }else if(opc == 3){
+        editar_cliente();
+    }else if(opc == 4){
+        agenda_cliente();
+    }else if(opc == 5){
+        remover_cliente();
+    }else if(opc == 0){
+        principal();
+    }
 }
 
 
@@ -318,15 +357,19 @@ void pesquisar_cliente(void){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///             Informe o token do cliente (apenas números):                ///\n");
+    printf("///                            PESQUISAR CLIENTE                            ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 
+    int token;
+    printf("Informe o token do cliente para pesquisar (apenas números): \n");
+    scanf("%i", &token);
     getchar();
+    printf("Função ainda em desenvolvimento, aperte enter para voltar para área do cliente");
+    getchar();
+    area_cliente();
 }
 
 void cadastrar_cliente(void){
@@ -344,19 +387,34 @@ void cadastrar_cliente(void){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///            = = = = = = =  CADASTRAR CLIENTE  = = = = = = =              ///\n");
+    printf("///                            CADASTRAR CLIENTE                            ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///                                                                         ///\n");
-    printf("///            Token (apenas números):                                      ///\n");
-    printf("///            Nome completo:                                               ///\n");
-    printf("///            E-mail:                                                      ///\n");
-    printf("///            Data de Nascimento (dd/mm/aaaa):                             ///\n");
-    printf("///            Celular  (apenas números):                                   ///\n");
-    printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+
+    char nome, email;
+    int token, nascimento, celular;
+
+    printf("Token (apenas números): \n");
+    scanf("%i", &token);
     getchar();
+    printf("Nome completo: \n");
+    scanf("%s", &nome);
+    getchar();
+    printf("E-mail: \n");
+    scanf("%s", &email);
+    getchar();
+    printf("Data de Nascimento (dd/mm/aaaa): \n");
+    scanf("%i", &nascimento);
+    getchar();
+    printf("Celular  (apenas números): \n");
+    scanf("%i", &celular);
+    getchar();
+    printf("Cliente cadastrado com sucesso!!!");
+    getchar();
+    area_cliente();
+
 }
 
 void editar_cliente(void){
@@ -374,15 +432,20 @@ void editar_cliente(void){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///             Informe o token do cliente (apenas números):                ///\n");
+    printf("///                              EDITAR CLIENTE                             ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///                                                                         ///\n");
-    printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 
+    int token;
+    printf("Informe o token do cliente para editar (apenas números): \n");
+    scanf("%i", &token);
     getchar();
+    printf("Função ainda em desenvolvimento, aperte enter para voltar para área do cliente");
+    getchar();
+    area_cliente();
+
 }
 
 void agenda_cliente(){
@@ -400,15 +463,19 @@ void agenda_cliente(){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///            = = = = = = =  AGENDA DO CLIENTE  = = = = = = =              ///\n");
+    printf("///                            AGENDA DO CLIENTE                            ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///                                                                         ///\n");
-    printf("///            Informe o token do cliente (apenas números):                 ///\n");
-    printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+
+    int token;
+    printf("Informe o token do cliente para acessar a agenda (apenas números): \n");
+    scanf("%i", &token);
     getchar();
+    printf("Função ainda em desenvolvimento, aperte enter para voltar para área do cliente");
+    getchar();
+    area_cliente();
 
     }
 
@@ -427,7 +494,7 @@ void remover_cliente(void ){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///            = = = = = = =  REMOVER CLIENTE  = = = = = = = =              ///\n");
+    printf("///                             REMOVER CLIENTE                             ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Informe o token do cliente (apenas números):                 ///\n");
@@ -435,7 +502,14 @@ void remover_cliente(void ){
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
+    
+    int token;
+    printf("Informe o token do cliente para remover (apenas números): \n");
+    scanf("%i", &token);
     getchar();
+    printf("Função ainda em desenvolvimento, aperte enter para voltar para área do cliente");
+    getchar();
+    area_cliente();
 }
 
 
@@ -494,7 +568,7 @@ void cadastrar_evento(void){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///            = = = = = = =  CADASTRAR EVENTO   = = = = = = =              ///\n");
+    printf("///                            CADASTRAR EVENTO                             ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Digite um Token para o evento:                               ///\n");
@@ -523,7 +597,7 @@ void editar_evento(void){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///            = = = = = = =  EDITAR EVENTO  = = = = = = = = =              ///\n");
+    printf("///                              EDITAR EVENTO                              ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///            Digite o Token do evento que você deseja editar:             ///\n");
@@ -546,7 +620,7 @@ void remover_evento(void){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("///                                                                         ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///            = = = = = = =  REMOVER EVENTO   = = = = = = = =              ///\n");
+    printf("///                             REMOVER EVENTO                              ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
     printf("///               Informe o token do evento (apenas números):               ///\n");
