@@ -134,8 +134,7 @@ void area_advogado(void){
     printf("Digite o número de uma opção: ");
     scanf("%i", &opc);
 
-    printf("%i", opc);
-
+    
     if (opc == 1){
         pesquisar_advogado();
     }else if (opc == 2){
@@ -149,9 +148,8 @@ void area_advogado(void){
     }else if(opc == 0){
         principal();
     }
-
-
 }
+
 
 void pesquisar_advogado(void){
     system("clear||cls");
@@ -324,7 +322,6 @@ void area_cliente(void){
     printf("Digite o número de uma opção: ");
     scanf("%i", &opc);
 
-    printf("%i", opc);
 
     if (opc == 1){
         pesquisar_cliente();
@@ -534,7 +531,6 @@ void agenda_geral(void){
     printf("Digite o número de uma opção: ");
     scanf("%i", &opc);
 
-    printf("%i", opc);
 
     if (opc == 1){
         listar_eventos();
@@ -728,12 +724,13 @@ void sobre(void){
     printf("==========================================\n");
     
     char opc;
-    printf("Voce deseja voltar ao menu principl? (s/n)\n");
+    printf("Você deseja voltar ao menu principal? (s/n)\n");
     scanf("%s", &opc);
+    
     if (opc == 's'){
         principal();
     }else{
-        printf("programa finalizado");
+        printf("Programa finalizado!");
     }
     
 }
