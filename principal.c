@@ -65,7 +65,7 @@ void login(void){
  void principal(void){
 
     printf("=============================================================\n");
-    printf("|                         Semana 2                          |\n");
+    printf("|                         Semana 4                          |\n");
     printf("=============================================================\n");
     printf("|                                                           |\n");
     printf("|    Universidade Federal do Rio Grande do Norte            |\n");
@@ -93,22 +93,28 @@ void login(void){
     scanf("%i", &opc);
 
 
-    while (opc != 0){
+    
 
         if (opc == 1){
             area_advogado();
-            break;
+            
         }else if (opc == 2){
             area_cliente();
-            break;
+            
         }else if(opc == 3){
             agenda_geral();
-            break;
+           
         }else if(opc == 4){
             sobre();
-            break;
-        }
-    }  
+            
+        } else if (opc == 0){
+            printf("programa finalizado");
+        }else if (opc > 4 || opc < 0){
+      getchar();
+      printf("numero digitado não reconhecido, precione enter para tente novamente");
+      getchar();
+      principal();
+    }
 
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////
@@ -134,7 +140,8 @@ void area_advogado(void){
     printf("Digite o número de uma opção: ");
     scanf("%i", &opc);
 
-    
+    printf("%i", opc);
+
     if (opc == 1){
         pesquisar_advogado();
     }else if (opc == 2){
@@ -147,9 +154,15 @@ void area_advogado(void){
         remover_advogado();
     }else if(opc == 0){
         principal();
+    }else if (opc > 5 || opc < 0){
+      getchar();
+      printf("numero digitado não reconhecido, precione enter para tente novamente");
+      getchar();
+      area_advogado();
     }
-}
 
+
+}
 
 void pesquisar_advogado(void){
     system("clear||cls");
@@ -322,6 +335,7 @@ void area_cliente(void){
     printf("Digite o número de uma opção: ");
     scanf("%i", &opc);
 
+    printf("%i", opc);
 
     if (opc == 1){
         pesquisar_cliente();
@@ -335,6 +349,11 @@ void area_cliente(void){
         remover_cliente();
     }else if(opc == 0){
         principal();
+    }else if (opc > 5 || opc < 0){
+      getchar();
+      printf("numero digitado não reconhecido, precione enter para tente novamente");
+      getchar();
+      area_cliente();
     }
 }
 
@@ -514,7 +533,7 @@ void remover_cliente(void ){
 ///////////////////////////////////////////////////////////////////////////
 
 void agenda_geral(void){
-
+    system("clear||cls");
     printf("==========================================\n");
     printf("|             AGENDA GERAL               |\n");
     printf("==========================================\n");
@@ -531,6 +550,7 @@ void agenda_geral(void){
     printf("Digite o número de uma opção: ");
     scanf("%i", &opc);
 
+    printf("%i", opc);
 
     if (opc == 1){
         listar_eventos();
@@ -542,6 +562,11 @@ void agenda_geral(void){
         remover_evento();
     }else if(opc == 0){
         principal();
+    }else if (opc > 4 || opc < 0){
+      getchar();
+      printf("numero digitado não reconhecido, precione enter para tente novamente");
+      getchar();
+      agenda_geral();
     }
     
 }
@@ -566,10 +591,10 @@ void listar_eventos(){
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-
+    getchar();
     printf("Função ainda em desenvolvimento, tecle ENTER para voltar para a agenda geral");
     getchar();
-    agenda_cliente();
+    agenda_geral();
 }
 
 void cadastrar_evento(void){
@@ -723,14 +748,8 @@ void sobre(void){
     printf("|                                        |\n");
     printf("==========================================\n");
     
-    char opc;
-    printf("Você deseja voltar ao menu principal? (s/n)\n");
-    scanf("%s", &opc);
-    
-    if (opc == 's'){
-        principal();
-    }else{
-        printf("Programa finalizado!");
-    }
-    
+    getchar();
+    printf("Tecle ENTER para voltar para área pricipal do programa");
+    getchar();
+    principal();
 }
