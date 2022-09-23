@@ -108,10 +108,10 @@ void login(void){
             sobre();
             
         } else if (opc == 0){
-            printf("programa finalizado");
+            printf("Programa finalizado.");
         }else if (opc > 4 || opc < 0){
       getchar();
-      printf("numero digitado não reconhecido, precione enter para tente novamente");
+      printf("Número digitado não reconhecido, pressione enter para tentar novamente.");
       getchar();
       principal();
     }
@@ -156,7 +156,7 @@ void area_advogado(void){
         principal();
     }else if (opc > 5 || opc < 0){
       getchar();
-      printf("numero digitado não reconhecido, precione enter para tente novamente");
+      printf("Número digitado não reconhecido, pressione enter para tentar novamente.");
       getchar();
       area_advogado();
     }
@@ -351,7 +351,7 @@ void area_cliente(void){
         principal();
     }else if (opc > 5 || opc < 0){
       getchar();
-      printf("numero digitado não reconhecido, precione enter para tente novamente");
+      printf("Número digitado não reconhecido, pressione enter para tentar novamente.");
       getchar();
       area_cliente();
     }
@@ -564,7 +564,7 @@ void agenda_geral(void){
         principal();
     }else if (opc > 4 || opc < 0){
       getchar();
-      printf("numero digitado não reconhecido, precione enter para tente novamente");
+      printf("Número digitado não reconhecido, pressione enter para tentar novamente.");
       getchar();
       agenda_geral();
     }
