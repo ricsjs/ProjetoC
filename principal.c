@@ -1,5 +1,6 @@
 # include <stdio.h>
 # include <stdlib.h>
+# include <locale.h>
 
 //assinatura de telas
 void login(void);
@@ -24,9 +25,9 @@ void editar_evento(void);
 void remover_evento(void);
 
 int main(void){
-
+    setlocale(LC_ALL,"portuguese");
     login();
-
+    printf("programa finalizado");
 }
 
 
@@ -36,26 +37,27 @@ void login(void){
 
     printf("==================================\n");
     printf("|                                |\n");
-    printf("| OLÃ, SEJA BEM-VINDO AO SIG-LAW |\n");
+    printf("| OLÁ, SEJA BEM-VINDO AO SIG-LAW |\n");
     printf("|                                |\n");
     printf("==================================\n");
 
-    printf("Digite seu nome de usuÃ¡rio: \n");
+    printf("Digite seu nome de usuário: \n");
     scanf("%s", &user);
 
     printf("Digite sua senha: \n");
     scanf("%s", &pass);
 
     while (user != 'u' && pass != 'p'){
-        printf("Credenciais invÃ¡lidas, tente novamente: \n");
-        printf("Digite seu nome de usuÃ¡rio: \n");
+        printf("Credenciais inválidas, tente novamente: \n");
+        printf("Digite seu nome de usuário: \n");
         scanf("%s", &user);
 
         printf("Digite sua senha: \n");
         scanf("%s", &pass);
     }
 
-    printf("UsuÃ¡rio logado com sucesso!\n");
+    printf("Usuário logado com sucesso!\n");
+    system("clear||cls");
     principal();
 
 
@@ -63,36 +65,36 @@ void login(void){
 
 
  void principal(void){
-
-    printf("=============================================================\n");
-    printf("|                         Semana 4                          |\n");
-    printf("=============================================================\n");
-    printf("|                                                           |\n");
-    printf("|    Universidade Federal do Rio Grande do Norte            |\n");
-    printf("|    Centro de Ensino Superior do SeridÃ³                    |\n");
-    printf("|    Departamento de ComputaÃ§Ã£o e Tecnologia                |\n");
-    printf("|    Disciplina DCT1106 -- ProgramaÃ§Ã£o                      |\n");
-    printf("|    Projeto                                                |\n");
-    printf("|    Sistema de agendamento para escritÃ³rio de advocacia    |\n");
-    printf("|                                                           |\n");
-    printf("=============================================================\n");
-
-    printf("=============================================================\n");
-    printf("|                            MENU                           |\n");
-    printf("=============================================================\n");
-    printf("| 1 - ÃREA DO ADVOGADO;                                     |\n");
-    printf("| 2 - ÃREA DO CLIENTE;                                      |\n");
-    printf("| 3 - AGENDA GERAL;                                         |\n");
-    printf("| 4 - SOBRE O PROGRAMA;                                     |\n");
-    printf("| 0 - SAIR;                                                 |\n");
-    printf("=============================================================\n");
-
     int opc;
+    while (opc !=0){
 
-    printf("Digite o nÃºmero de uma opÃ§Ã£o: ");
-    scanf("%i", &opc);
-    
+        printf("=============================================================\n");
+        printf("|                         Semana 5                          |\n");
+        printf("=============================================================\n");
+        printf("|                                                           |\n");
+        printf("|    Universidade Federal do Rio Grande do Norte            |\n");
+        printf("|    Centro de Ensino Superior do Seridó                    |\n");
+        printf("|    Departamento de Computação e Tecnologia                |\n");
+        printf("|    Disciplina DCT1106 -- Programação                      |\n");
+        printf("|    Projeto                                                |\n");
+        printf("|    Sistema de agendamento para escritório de advocacia    |\n");
+        printf("|                                                           |\n");
+        printf("=============================================================\n");
+        printf("=============================================================\n");
+        printf("|                            MENU                           |\n");
+        printf("=============================================================\n");
+        printf("| 1 - ÁREA DO ADVOGADO;                                     |\n");
+        printf("| 2 - ÁREA DO CLIENTE;                                      |\n");
+        printf("| 3 - AGENDA GERAL;                                         |\n");
+        printf("| 4 - SOBRE O PROGRAMA;                                     |\n");
+        printf("| 0 - SAIR;                                                 |\n");
+        printf("=============================================================\n");
+
+        printf("Digite o número de uma opção: ");
+        scanf("%i", &opc);
+        
         if (opc == 1){
+            system("clear||cls");
             area_advogado();
             
         }else if (opc == 2){
@@ -100,28 +102,27 @@ void login(void){
             
         }else if(opc == 3){
             agenda_geral();
-           
+        
         }else if(opc == 4){
             sobre();
-            
-        } else if (opc == 0){
-            printf("programa finalizado");
         }else if (opc > 4 || opc < 0){
-      getchar();
-      printf("numero digitado nÃ£o reconhecido, precione enter para tente novamente");
-      getchar();
-      principal();
+            getchar();
+            printf("numero digitado não reconhecido, precione enter para tente novamente");
+            getchar();
+        }
     }
+ }
 
-}
 /////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////// A D V O G A D O  ////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////
 
 void area_advogado(void){
+    int opc;
+    while (opc != 0){
     system("clear||cls");
     printf("==========================================\n");
-    printf("|             ÃREA DO ADVOGADO           |\n");
+    printf("|             ÁREA DO ADVOGADO           |\n");
     printf("==========================================\n");
     printf("|                                        |\n");
     printf("| 1 - PESQUISAR ADVOGADO                 |\n");
@@ -131,12 +132,9 @@ void area_advogado(void){
     printf("| 5 - REMOVER ADVOGADO                   |\n");
     printf("| 0 - VOLTAR                             |\n");
     printf("==========================================\n");
-    
-    int opc;
 
-    printf("Digite o nÃºmero de uma opÃ§Ã£o: ");
+    printf("Digite o número de uma opção: ");
     scanf("%i", &opc);
-
 
     if (opc == 1){
         pesquisar_advogado();
@@ -148,16 +146,13 @@ void area_advogado(void){
         agenda_advogado();
     }else if(opc == 5){
         remover_advogado();
-    }else if(opc == 0){
-        principal();
     }else if (opc > 5 || opc < 0){
       getchar();
-      printf("numero digitado nÃ£o reconhecido, precione enter para tente novamente");
+      printf("numero digitado não reconhecido, precione enter para tente novamente");
       getchar();
-      area_advogado();
     }
 
-
+}
 }
 
 void pesquisar_advogado(void){
@@ -178,12 +173,12 @@ void pesquisar_advogado(void){
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     int token;
-    printf("Informe o token do advogado para pesquisar (apenas nÃºmeros): \n");
+    printf("Informe o token do advogado para pesquisar (apenas números): \n");
     scanf("%i", &token);
     getchar();
-    printf("FunÃ§Ã£o ainda em desenvolvimento, tecle ENTER para voltar para Ã¡rea do advogado");
+    printf("Função ainda em desenvolvimento, tecle ENTER para voltar para área do advogado");
     getchar();
-    area_advogado();
+    
 }
 
 void cadastrar_advogado(){
@@ -209,7 +204,7 @@ void cadastrar_advogado(){
     char nome, email;
     int token, nascimento, celular;
 
-    printf("Token (apenas nÃºmeros): \n");
+    printf("Token (apenas números): \n");
     scanf("%i", &token);
     getchar();
     printf("Nome completo: \n");
@@ -221,12 +216,12 @@ void cadastrar_advogado(){
     printf("Data de Nascimento (dd/mm/aaaa): \n");
     scanf("%i", &nascimento);
     getchar();
-    printf("Celular  (apenas nÃºmeros): \n");
+    printf("Celular  (apenas números): \n");
     scanf("%i", &celular);
     getchar();
-    printf("Advogado cadastrado com sucesso! Tecle ENTER para voltar para Ã¡rea do advogado");
+    printf("Advogado cadastrado com sucesso! Tecle ENTER para voltar para área do advogado");
     getchar();
-    area_advogado();
+    
 
 }
 
@@ -248,12 +243,12 @@ void editar_advogado(){
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     int token;
-    printf("Informe o token do advogado para editar (apenas nÃºmeros): \n");
+    printf("Informe o token do advogado para editar (apenas números): \n");
     scanf("%i", &token);
     getchar();
-    printf("FunÃ§Ã£o ainda em desenvolvimento, tecle ENTER para voltar para Ã¡rea do advogado");
+    printf("Função ainda em desenvolvimento, tecle ENTER para voltar para área do advogado");
     getchar();
-    area_advogado();
+    
 }
 
 void agenda_advogado(void){
@@ -274,12 +269,12 @@ void agenda_advogado(void){
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     int token;
-    printf("Informe o token do advogado para acessar a agenda (apenas nÃºmeros): \n");
+    printf("Informe o token do advogado para acessar a agenda (apenas números): \n");
     scanf("%i", &token);
     getchar();
-    printf("FunÃ§Ã£o ainda em desenvolvimento, tecle ENTER para voltar para Ã¡rea do advogado");
+    printf("Função ainda em desenvolvimento, tecle ENTER para voltar para área do advogado");
     getchar();
-    area_advogado();
+
 }
 
 void remover_advogado(void) {
@@ -300,12 +295,12 @@ void remover_advogado(void) {
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     int token;
-    printf("Informe o token do advogado para remover (apenas nÃºmeros): \n");
+    printf("Informe o token do advogado para remover (apenas números): \n");
     scanf("%i", &token);
     getchar();
-    printf("FunÃ§Ã£o ainda em desenvolvimento, tecle ENTER para voltar para Ã¡rea do advogado");
+    printf("Função ainda em desenvolvimento, tecle ENTER para voltar para área do advogado");
     getchar();
-    area_advogado();
+    
 }
 
 
@@ -313,9 +308,11 @@ void remover_advogado(void) {
 ////////////////////////////// C L I E N T E //////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 void area_cliente(void){
+    int opc;
+    while (opc !=0 ){
     system("clear||cls");
     printf("==========================================\n");
-    printf("|             ÃREA DO CLIENTE            |\n");
+    printf("|             ÁREA DO CLIENTE            |\n");
     printf("==========================================\n");
     printf("|                                        |\n");
     printf("| 1 - PESQUISAR CLIENTE                  |\n");
@@ -326,9 +323,7 @@ void area_cliente(void){
     printf("| 0 - VOLTAR                             |\n");
     printf("==========================================\n");
 
-    int opc;
-
-    printf("Digite o nÃºmero de uma opÃ§Ã£o: ");
+    printf("Digite o número de uma opção: ");
     scanf("%i", &opc);
 
     if (opc == 1){
@@ -341,13 +336,11 @@ void area_cliente(void){
         agenda_cliente();
     }else if(opc == 5){
         remover_cliente();
-    }else if(opc == 0){
-        principal();
     }else if (opc > 5 || opc < 0){
       getchar();
-      printf("numero digitado nÃ£o reconhecido, precione enter para tente novamente");
+      printf("numero digitado não reconhecido, precione enter para tente novamente");
       getchar();
-      area_cliente();
+    }
     }
 }
 
@@ -374,12 +367,12 @@ void pesquisar_cliente(void){
     printf("\n");
 
     int token;
-    printf("Informe o token do cliente para pesquisar (apenas nÃºmeros): \n");
+    printf("Informe o token do cliente para pesquisar (apenas números): \n");
     scanf("%i", &token);
     getchar();
-    printf("FunÃ§Ã£o ainda em desenvolvimento, tecle ENTER para voltar para Ã¡rea do cliente");
+    printf("Função ainda em desenvolvimento, tecle ENTER para voltar para área do cliente");
     getchar();
-    area_cliente();
+    
 }
 
 void cadastrar_cliente(void){
@@ -406,7 +399,7 @@ void cadastrar_cliente(void){
     char nome, email;
     int token, nascimento, celular;
 
-    printf("Token (apenas nÃºmeros): \n");
+    printf("Token (apenas números): \n");
     scanf("%i", &token);
     getchar();
     printf("Nome completo: \n");
@@ -418,12 +411,11 @@ void cadastrar_cliente(void){
     printf("Data de Nascimento (dd/mm/aaaa): \n");
     scanf("%i", &nascimento);
     getchar();
-    printf("Celular  (apenas nÃºmeros): \n");
+    printf("Celular  (apenas números): \n");
     scanf("%i", &celular);
     getchar();
-    printf("Cliente cadastrado com sucesso! Tecle ENTER para voltar para Ã¡rea do cliente");
+    printf("Cliente cadastrado com sucesso! Tecle ENTER para voltar para área do cliente");
     getchar();
-    area_cliente();
 
 }
 
@@ -449,12 +441,12 @@ void editar_cliente(void){
     printf("\n");
 
     int token;
-    printf("Informe o token do cliente para editar (apenas nÃºmeros): \n");
+    printf("Informe o token do cliente para editar (apenas números): \n");
     scanf("%i", &token);
     getchar();
-    printf("FunÃ§Ã£o ainda em desenvolvimento, tecle ENTER para voltar para Ã¡rea do cliente");
+    printf("Função ainda em desenvolvimento, tecle ENTER para voltar para área do cliente");
     getchar();
-    area_cliente();
+   
 
 }
 
@@ -480,12 +472,11 @@ void agenda_cliente(){
     printf("\n");
 
     int token;
-    printf("Informe o token do cliente para acessar a agenda (apenas nÃºmeros): \n");
+    printf("Informe o token do cliente para acessar a agenda (apenas números): \n");
     scanf("%i", &token);
     getchar();
-    printf("FunÃ§Ã£o ainda em desenvolvimento, tecle ENTER para voltar para Ã¡rea do cliente");
+    printf("Função ainda em desenvolvimento, tecle ENTER para voltar para área do cliente");
     getchar();
-    area_cliente();
 
     }
 
@@ -507,19 +498,18 @@ void remover_cliente(void ){
     printf("///                             REMOVER CLIENTE                             ///\n");
     printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
     printf("///                                                                         ///\n");
-    printf("///            Informe o token do cliente (apenas nÃºmeros):                 ///\n");
+    printf("///            Informe o token do cliente (apenas números):                 ///\n");
     printf("///                                                                         ///\n");
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     
     int token;
-    printf("Informe o token do cliente para remover (apenas nÃºmeros): \n");
+    printf("Informe o token do cliente para remover (apenas números): \n");
     scanf("%i", &token);
     getchar();
-    printf("FunÃ§Ã£o ainda em desenvolvimento, tecle ENTER para voltar para Ã¡rea do cliente");
+    printf("Função ainda em desenvolvimento, tecle ENTER para voltar para área do cliente");
     getchar();
-    area_cliente();
 }
 
 ///////////////////////////////////////////////////////////////////////////
@@ -527,6 +517,8 @@ void remover_cliente(void ){
 ///////////////////////////////////////////////////////////////////////////
 
 void agenda_geral(void){
+    int opc;
+    while (opc != 0){
     system("clear||cls");
     printf("==========================================\n");
     printf("|             AGENDA GERAL               |\n");
@@ -539,9 +531,7 @@ void agenda_geral(void){
     printf("| 0 - VOLTAR                             |\n");
     printf("==========================================\n");
 
-    int opc;
-
-    printf("Digite o nÃºmero de uma opÃ§Ã£o: ");
+    printf("Digite o número de uma opção: ");
     scanf("%i", &opc);
 
     if (opc == 1){
@@ -552,16 +542,15 @@ void agenda_geral(void){
         editar_evento();
     }else if(opc == 4){
         remover_evento();
-    }else if(opc == 0){
-        principal();
     }else if (opc > 4 || opc < 0){
       getchar();
-      printf("numero digitado nÃ£o reconhecido, precione enter para tente novamente");
+      printf("numero digitado não reconhecido, precione enter para tente novamente");
       getchar();
-      agenda_geral();
     }
     
 }
+}
+
 
 void listar_eventos(){
     system("clear||cls");
@@ -584,9 +573,8 @@ void listar_eventos(){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     getchar();
-    printf("FunÃ§Ã£o ainda em desenvolvimento, tecle ENTER para voltar para a agenda geral");
+    printf("Função ainda em desenvolvimento, tecle ENTER para voltar para a agenda geral");
     getchar();
-    agenda_geral();
 }
 
 void cadastrar_evento(void){
@@ -613,24 +601,24 @@ void cadastrar_evento(void){
     int token_evento, token_advogado, token_cliente, data;
     char nome;
 
-    printf("Token do evento (apenas nÃºmeros): \n");
+    printf("Token do evento (apenas números): \n");
     scanf("%i", &token_evento);
     getchar();
     printf("Nome do evento: \n");
     scanf("%s", &nome);
     getchar();
-    printf("Token do advogado vinculado ao evento (apenas nÃºmeros): \n");
+    printf("Token do advogado vinculado ao evento (apenas números): \n");
     scanf("%i", &token_advogado);
     getchar();
-    printf("Token do cliente vinculado ao evento (apenas nÃºmeros): \n");
+    printf("Token do cliente vinculado ao evento (apenas números): \n");
     scanf("%i", &token_cliente);
     getchar();
     printf("Data do evento (dd/mm/aaaa): \n");
     scanf("%i", &data);
     getchar();
-    printf("Evento cadastrado com sucesso! Tecle ENTER para voltar para Ã¡rea a agenda geral");
+    printf("Evento cadastrado com sucesso! Tecle ENTER para voltar para área a agenda geral");
     getchar();
-    agenda_geral();
+    
 
 }
 
@@ -656,12 +644,12 @@ void editar_evento(void){
     printf("\n");
     
     int token;
-    printf("Informe o token do evento para editar (apenas nÃºmeros): \n");
+    printf("Informe o token do evento para editar (apenas números): \n");
     scanf("%i", &token);
     getchar();
-    printf("FunÃ§Ã£o ainda em desenvolvimento, tecle ENTER para voltar para a agenda geral");
+    printf("Função ainda em desenvolvimento, tecle ENTER para voltar para a agenda geral");
     getchar();
-    agenda_geral();
+    
 
 }
 void remover_evento(void){
@@ -686,12 +674,12 @@ void remover_evento(void){
     printf("\n");
 
     int token;
-    printf("Informe o token do evento para remover (apenas nÃºmeros): \n");
+    printf("Informe o token do evento para remover (apenas números): \n");
     scanf("%i", &token);
     getchar();
-    printf("FunÃ§Ã£o ainda em desenvolvimento, tecle ENTER para voltar para a agenda geral");
+    printf("Função ainda em desenvolvimento, tecle ENTER para voltar para a agenda geral");
     getchar();
-    agenda_geral();
+    
 }
 
 
@@ -707,7 +695,7 @@ void sobre(void){
     printf("|         & Ricardo Alencar              |\n");
     printf("|                                        |\n");
     printf("|         Alunos do curso de BSI         |\n");
-    printf("|  Bacharelado de Sistemas de InformaÃ§Ã£o |\n");
+    printf("|  Bacharelado de Sistemas de Informação |\n");
     printf("|                                        |\n");
     printf("|    Instagram: @janderson_natan         |\n");
     printf("|    e @eualencaar                       |\n");
@@ -722,26 +710,32 @@ void sobre(void){
     printf("==========================================\n");
     printf("|                                        |\n");
     printf("| O projeto foi desgninado pelo professor|\n");
-    printf("| Flavius GorgÃ´nio que leciona a dicipli-|\n");
-    printf("| na de ProgramaÃ§Ã£o - DCT1106 na UFRN.   |\n");
-    printf("| O tema do nosso projeto Ã© criar um sis-|\n");
-    printf("| tema de agendamento para escritÃ³rio de |\n");
+    printf("| Flavius Gorgônio que leciona a dicipli-|\n");
+    printf("| na de Programação - DCT1106 na UFRN.   |\n");
+    printf("| O tema do nosso projeto é criar um sis-|\n");
+    printf("| tema de agendamento para escritório de |\n");
     printf("| advocacia. Esse sistema deve ser criado|\n");
-    printf("| na linguagem C, ele servirÃ¡ para faci- |\n");
-    printf("| litar o agendamento de reuniÃµes e even-|\n");
-    printf("| tos do setor jurÃ­dico, para que nÃ£o    |\n");
-    printf("| hajam imprevistos com horÃ¡rios.        |\n");
+    printf("| na linguagem C, ele servirá para faci- |\n");
+    printf("| litar o agendamento de reuniões e even-|\n");
+    printf("| tos do setor jurídico, para que não    |\n");
+    printf("| hajam imprevistos com horários.        |\n");
     printf("|                                        |\n");
     printf("| O sistema deve contar com:             |\n");
-    printf("| ÃREA DO ADVOGADO;                      |\n");
-    printf("| ÃREA DO CLIENTE;                       |\n");
+    printf("| ÁREA DO ADVOGADO;                      |\n");
+    printf("| ÁREA DO CLIENTE;                       |\n");
     printf("| AGENDA GERAL;                          |\n");
     printf("| SOBRE O PROGRAMA;                      |\n");
     printf("|                                        |\n");
     printf("==========================================\n");
     
     getchar();
-    printf("Tecle ENTER para voltar para Ã¡rea pricipal do programa");
+    printf("Tecle ENTER para voltar para área pricipal do programa");
     getchar();
-    principal();
+    
 }
+
+ 
+
+
+///////////////////////// criar relatorio com informações precisas, ex; todos os Advogado. todos os clientes. 
+//////////todos os eventos, dentre outras areas especi
