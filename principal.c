@@ -91,10 +91,7 @@ void login(void){
 
     printf("Digite o número de uma opção: ");
     scanf("%i", &opc);
-
-
     
-
         if (opc == 1){
             area_advogado();
             
@@ -140,7 +137,6 @@ void area_advogado(void){
     printf("Digite o número de uma opção: ");
     scanf("%i", &opc);
 
-    printf("%i", opc);
 
     if (opc == 1){
         pesquisar_advogado();
@@ -334,8 +330,6 @@ void area_cliente(void){
 
     printf("Digite o número de uma opção: ");
     scanf("%i", &opc);
-
-    printf("%i", opc);
 
     if (opc == 1){
         pesquisar_cliente();
@@ -549,8 +543,6 @@ void agenda_geral(void){
 
     printf("Digite o número de uma opção: ");
     scanf("%i", &opc);
-
-    printf("%i", opc);
 
     if (opc == 1){
         listar_eventos();
