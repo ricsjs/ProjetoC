@@ -111,10 +111,10 @@ void login(void){
         } else if (opc == 0){
             printf("Programa finalizado.");
         }else if (opc > 4 || opc < 0){
-      getchar();
-      printf("Número digitado não reconhecido, pressione enter para tentar novamente.");
-      getchar();
-      principal();
+        getchar();
+        printf("Número digitado não reconhecido, pressione enter para tentar novamente.");
+        getchar();
+        principal();
 
         }else if (opc > 4 || opc < 0){
             getchar();
@@ -231,10 +231,10 @@ void cadastrar_advogado(){
     scanf("%s", &email);
     getchar();
     printf("Data de Nascimento (dd/mm/aaaa): \n");
-    scanf("%i", &nascimento);
+    scanf("%s", &nascimento);
     getchar();
     printf("Celular  (apenas números): \n");
-    scanf("%i", &celular);
+    scanf("%s", &celular);
     getchar();
     printf("Advogado cadastrado com sucesso! Tecle ENTER para voltar para área do advogado");
     getchar();
@@ -431,10 +431,10 @@ void cadastrar_cliente(void){
     scanf("%s", &email);
     getchar();
     printf("Data de Nascimento (dd/mm/aaaa): \n");
-    scanf("%i", &nascimento);
+    scanf("%s", &nascimento);
     getchar();
     printf("Celular  (apenas números): \n");
-    scanf("%i", &celular);
+    scanf("%s", &celular);
     getchar();
     printf("Cliente cadastrado com sucesso! Tecle ENTER para voltar para área do cliente");
     getchar();
@@ -640,7 +640,7 @@ void cadastrar_evento(void){
     scanf("%i", &token_cliente);
     getchar();
     printf("Data do evento (dd/mm/aaaa): \n");
-    scanf("%i", &data);
+    scanf("%s", &data);
     getchar();
     printf("Evento cadastrado com sucesso! Tecle ENTER para voltar para área a agenda geral");
     getchar();
