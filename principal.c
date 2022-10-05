@@ -218,8 +218,8 @@ void cadastrar_advogado(){
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    char nome, email;
-    int token, nascimento, celular;
+    char nome, email, nascimento, celular;
+    int token;
 
     printf("Token (apenas n�meros): \n");
     scanf("%i", &token);
@@ -418,8 +418,8 @@ void cadastrar_cliente(void){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 
-    char nome, email;
-    int token, nascimento, celular;
+    char nome, email, nascimento, celular;
+    int token;
 
     printf("Token (apenas n�meros): \n");
     scanf("%i", &token);
@@ -624,8 +624,8 @@ void cadastrar_evento(void){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     
-    int token_evento, token_advogado, token_cliente, data;
-    char nome;
+    int token_evento, token_advogado, token_cliente;
+    char nome, data;
 
     printf("Token do evento (apenas números): \n");
     scanf("%i", &token_evento);
