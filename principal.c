@@ -1,19 +1,14 @@
-# include <stdio.h>
-# include <stdlib.h>
-# include <locale.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <locale.h>
 #include "advogado.h"
+#include "cliente.h"
 
 //assinatura de telas
-//void login(void);
+void login(void);
 void principal(void);
 void sobre(void);
-void area_cliente(void);
 void agenda_geral(void);
-void pesquisar_cliente(void);
-void cadastrar_cliente(void);
-void editar_cliente(void);
-void agenda_cliente(void);
-void remover_cliente(void);
 void listar_eventos(void);
 void cadastrar_evento(void);
 void editar_evento(void);
@@ -26,7 +21,7 @@ int main(void){
 }
 
 
-/*void login(void){
+void login(void){
 
     char user, pass;
 
@@ -56,7 +51,7 @@ int main(void){
     principal();
 
 
-}*/
+}
 
 
  void principal(void){
