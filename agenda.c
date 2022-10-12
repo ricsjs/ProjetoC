@@ -10,23 +10,20 @@ void agenda_geral(void){
     printf("///       ===== AGENDA GERAL =====        ///\n");
     printf("/////////////////////////////////////////////\n");
     printf("///                                       ///\n");
-    printf("///  1 - LISTAR EVENTOS                   ///\n");
-    printf("///  2 - CADASTRAR NOVO EVENTO            ///\n");
-    printf("///  3 - EDITAR EVENTO                    ///\n");
-    printf("///  4 - REMOVER EVENTO                   ///\n");
+    printf("///  1 - CADASTRAR NOVO EVENTO            ///\n");
+    printf("///  2 - EDITAR EVENTO                    ///\n");
+    printf("///  3 - REMOVER EVENTO                   ///\n");
     printf("///  0 - VOLTAR                           ///\n");
     printf("/////////////////////////////////////////////\n");
 
     printf("Digite o número de uma opção: ");
     scanf("%i", &opc);
-
-    if (opc == 1){
-        listar_eventos();
-    }else if (opc == 2){
+    
+     if (opc == 1){
         cadastrar_evento();
-    }else if(opc == 3){
+    }else if(opc == 2){
         editar_evento();
-    }else if(opc == 4){
+    }else if(opc == 3){
         remover_evento();
     }else if (opc > 4 || opc < 0){
       getchar();
