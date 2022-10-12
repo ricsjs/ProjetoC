@@ -4,6 +4,7 @@
 #include "advogado.h"
 #include "cliente.h"
 #include "agenda.h"
+#include "relatorio.h"
 
 //assinatura de telas
 void login(void);

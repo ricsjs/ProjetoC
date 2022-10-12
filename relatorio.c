@@ -22,7 +22,7 @@ void area_relatorio(void){
         if (opc == 1) {
             td_advogados();
         } else if(opc == 2){
-            td_cliente();
+            td_clientes();
         }else if (opc == 3){
             printf("função em desenvolvimento");
         }    
