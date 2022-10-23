@@ -1,0 +1,1 @@
+int valida_data(int dia, int mes, int ano);

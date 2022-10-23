@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "advogado.h"
-
+#include "validacoes.h"
 
 void area_advogado(void){
     int opc;
@@ -90,8 +90,8 @@ void cadastrar_advogado(){
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    char nome, email, nascimento, celular;
-    int token;
+    char nome, email, celular;
+    int token, dia, mes, ano;
 
     printf("Token (apenas números): \n");
     scanf("%i", &token);
@@ -102,9 +102,20 @@ void cadastrar_advogado(){
     printf("E-mail: \n");
     scanf("%s", &email);
     getchar();
-    printf("Data de Nascimento (dd/mm/aaaa): \n");
-    scanf("%s", &nascimento);
-    getchar();
+    
+    do {
+        printf(" | Informe o dia de nascimento: ");
+        scanf("%d", &dia);
+        getchar();
+        printf(" | Informe o mês de nascimento: ");
+        scanf("%d", &mes);
+        getchar();
+        printf(" | Informe o ano de nascimento: ");
+        scanf("%d", &ano);
+        getchar();
+        
+    } while(!valida_data(dia, mes, ano));
+    
     printf("Celular  (apenas números): \n");
     scanf("%s", &celular);
     getchar();
