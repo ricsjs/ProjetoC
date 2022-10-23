@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "cliente.h"
+#include "validacoes.h"
 
 void area_cliente(void){
     int opc;
@@ -96,8 +97,8 @@ void cadastrar_cliente(void){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 
-    char nome, email, nascimento, celular;
-    int token;
+    char nome, email, celular;
+    int token, dia, mes, ano;
 
     printf("Token (apenas números): \n");
     scanf("%i", &token);
@@ -108,9 +109,20 @@ void cadastrar_cliente(void){
     printf("E-mail: \n");
     scanf("%s", &email);
     getchar();
-    printf("Data de Nascimento (dd/mm/aaaa): \n");
-    scanf("%s", &nascimento);
-    getchar();
+    
+    do {
+        printf(" | Informe o dia de nascimento: ");
+        scanf("%d", &dia);
+        getchar();
+        printf(" | Informe o mês de nascimento: ");
+        scanf("%d", &mes);
+        getchar();
+        printf(" | Informe o ano de nascimento: ");
+        scanf("%d", &ano);
+        getchar();
+        
+    } while(!valida_data(dia, mes, ano));
+
     printf("Celular  (apenas números): \n");
     scanf("%s", &celular);
     getchar();

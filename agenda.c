@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "agenda.h"
+#include "validacoes.h"
 
 void agenda_geral(void){
     int opc;
@@ -86,7 +87,7 @@ void cadastrar_evento(void){
     printf("\n");
     
     int token_evento, token_advogado, token_cliente;
-    char nome, data;
+    char nome, dia, mes, ano;
 
     printf("Token do evento (apenas números): \n");
     scanf("%i", &token_evento);
@@ -100,9 +101,18 @@ void cadastrar_evento(void){
     printf("Token do cliente vinculado ao evento (apenas números): \n");
     scanf("%i", &token_cliente);
     getchar();
-    printf("Data do evento (dd/mm/aaaa): \n");
-    scanf("%s", &data);
-    getchar();
+    do {
+        printf(" | Informe o dia do evento: ");
+        scanf("%d", &dia);
+        getchar();
+        printf(" | Informe o mês do evento: ");
+        scanf("%d", &mes);
+        getchar();
+        printf(" | Informe o ano do evento: ");
+        scanf("%d", &ano);
+        getchar();
+        
+    } while(!valida_data(dia, mes, ano));
     printf("Evento cadastrado com sucesso! Tecle ENTER para voltar para área a agenda geral");
     getchar();
     
