@@ -90,12 +90,15 @@ void cadastrar_advogado(){
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    char nome, Email[50], celular;
-    int token, dia, mes, ano;
+    char nome, Email[50], cpf[15], celular;
+    int dia, mes, ano;
 
-    printf("Token (apenas números): \n");
-    scanf("%i", &token);
-    getchar();
+    do{
+        printf("CPF: ");
+        scanf("%s",cpf);
+        getchar();
+    }while(!valida_cpf(cpf));
+
     printf("Nome completo: \n");
     scanf("%s", &nome);
     getchar();
