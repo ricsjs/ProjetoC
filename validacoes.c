@@ -176,6 +176,7 @@ return validador;
 }
 
 // === Validação de celular === //
+// by https://github.com/ViniciusMaiaM/SIG-Check
 
 int ddd[27] = {11,21,27,31,41,47,51,61,62,63,65,67,68,69,71,79,81,82,83,84,85,86,91,92,95,96,98};
 
