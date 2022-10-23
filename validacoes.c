@@ -3,6 +3,8 @@
 #include "validacoes.h"
 #include <string.h>
 
+// === Validação de data === //
+
 int valida_data(int dia, int mes, int ano) { //by https://www.vivaolinux.com.br/script/Funcao-para-validacao-de-datas
     if ((dia >= 1 && dia <= 31) && (mes >= 1 && mes <= 12) && (ano >= 1900 && ano <= 2100)) //verifica se os numeros sao validos
         {
@@ -32,6 +34,8 @@ int valida_data(int dia, int mes, int ano) { //by https://www.vivaolinux.com.br/
                 return 0;
            }
 }
+
+// === Validação de e-mail === //
 
 // retorna 0 se for false e 1 se for true
 
@@ -72,7 +76,9 @@ int lerEmail(char email[]) //by https://pt.stackoverflow.com/users/110948/rog%C3
 
 }
 
-int valida_cpf(char *cpf){
+// === Validação de CPF === //
+
+int valida_cpf(char *cpf){ //by https://github.com/ViniciusMaiaM/SIG-Check
     int validador = 1;
     int cpf_int[11];
     int soma_d1=0, soma_d2=0, calculo_d, tam,d=0,i=0, digitos;
