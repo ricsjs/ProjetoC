@@ -118,13 +118,14 @@ void cadastrar_cliente(void){
     } while (!lerEmail(Email));
     
     do {
-        printf(" | Informe o dia de nascimento: ");
+        printf("Data de nascimento\n");
+        printf("Informe o dia: ");
         scanf("%d", &dia);
         getchar();
-        printf(" | Informe o mês de nascimento: ");
+        printf("Informe o mês: ");
         scanf("%d", &mes);
         getchar();
-        printf(" | Informe o ano de nascimento: ");
+        printf("Informe o ano: ");
         scanf("%d", &ano);
         getchar();
         

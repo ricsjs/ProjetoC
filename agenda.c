@@ -86,8 +86,8 @@ void cadastrar_evento(void){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     
-    int token_evento, token_advogado, token_cliente, dia, mes, ano;
-    char nome;
+    int token_evento, dia, mes, ano;
+    char nome, cpf[15];
 
     printf("Token do evento (apenas números): \n");
     scanf("%i", &token_evento);
@@ -95,20 +95,28 @@ void cadastrar_evento(void){
     printf("Nome do evento: \n");
     scanf("%s", &nome);
     getchar();
-    printf("Token do advogado vinculado ao evento (apenas números): \n");
-    scanf("%i", &token_advogado);
+
+    do{
+    printf("Informe o CPF do advogado vinculado ao evento (apenas números): \n");
+    scanf("%s", cpf);
     getchar();
-    printf("Token do cliente vinculado ao evento (apenas números): \n");
-    scanf("%i", &token_cliente);
+    }while(!valida_cpf(cpf));
+
+    do{
+    printf("Informe o CPF do cliente vinculado ao evento (apenas números): \n");
+    scanf("%s", cpf);
     getchar();
+    }while(!valida_cpf(cpf));
+
     do {
-        printf(" | Informe o dia do evento: ");
+        printf("Data do evento\n");
+        printf("Informe o dia: ");
         scanf("%d", &dia);
         getchar();
-        printf(" | Informe o mês do evento: ");
+        printf("Informe o mês: ");
         scanf("%d", &mes);
         getchar();
-        printf(" | Informe o ano do evento: ");
+        printf("Informe o ano: ");
         scanf("%d", &ano);
         getchar();
         

@@ -94,7 +94,7 @@ void cadastrar_advogado(){
     int dia, mes, ano;
 
     do{
-        printf("CPF: ");
+        printf("Informe o CPF(Digite apenas numeros): ");
         scanf("%s",cpf);
         getchar();
     }while(!valida_cpf(cpf));
@@ -104,31 +104,31 @@ void cadastrar_advogado(){
     getchar();
     
     do {
-        printf(" | Informe o seu E-mail: ");   
+        printf("Informe o seu E-mail: ");   
         scanf("%s", Email);
         getchar();
 
     } while (!lerEmail(Email));
     
     do {
-        printf(" | Informe o dia de nascimento: ");
+        printf ("Data de nascimento\n");
+        printf("Informe o dia: ");
         scanf("%d", &dia);
         getchar();
-        printf(" | Informe o mês de nascimento: ");
+        printf("Informe o mês: ");
         scanf("%d", &mes);
         getchar();
-        printf(" | Informe o ano de nascimento: ");
+        printf("Informe o ano: ");
         scanf("%d", &ano);
         getchar();
         
     } while(!valida_data(dia, mes, ano));
     
    do{
-        printf("          Celular (apenas números | Insira DDD): ");
+        printf("Celular (apenas números | Insira DDD): ");
         scanf("%[0-9]",celular);
         getchar();
     }while(!valida_cel(celular));
-    
     printf("Advogado cadastrado com sucesso! Tecle ENTER para voltar para área do advogado");
     getchar();
     

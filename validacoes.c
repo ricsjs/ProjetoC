@@ -26,11 +26,13 @@ int valida_data(int dia, int mes, int ano) { //by https://www.vivaolinux.com.br/
             }
             else
             {
+                printf("Data invalida, informe novaamente\n");
                 return 0;
             }
       }
        else
            {
+                printf("Data invalida, informe novaamente\n");
                 return 0;
            }
 }
@@ -78,7 +80,7 @@ int lerEmail(char email[]) //by https://pt.stackoverflow.com/users/110948/rog%C3
 
 // === Validação de CPF === //
 
-int valida_cpf(char *cpf){ //by https://github.com/ViniciusMaiaM/SIG-Check
+int valida_cpf(char *cpf ){ //by https://github.com/ViniciusMaiaM/SIG-Check
     int validador = 1;
     int cpf_int[11];
     int soma_d1=0, soma_d2=0, calculo_d, tam,d=0,i=0, digitos;
@@ -169,6 +171,7 @@ else{
     if(calculo_d==digitos){   
         validador=1;
     }else{
+        printf("CPF inválido, Digite novamente: \n");
         validador=0;
     }
     }
