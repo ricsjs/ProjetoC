@@ -86,8 +86,8 @@ void cadastrar_evento(void){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
     
-    int token_evento, token_advogado, token_cliente;
-    char nome, dia, mes, ano;
+    int token_evento, token_advogado, token_cliente, dia, mes, ano;
+    char nome;
 
     printf("Token do evento (apenas números): \n");
     scanf("%i", &token_evento);

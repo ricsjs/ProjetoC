@@ -97,7 +97,7 @@ void cadastrar_cliente(void){
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
 
-    char nome, email, celular;
+    char nome, Email[50], celular;
     int token, dia, mes, ano;
 
     printf("Token (apenas números): \n");
@@ -106,9 +106,13 @@ void cadastrar_cliente(void){
     printf("Nome completo: \n");
     scanf("%s", &nome);
     getchar();
-    printf("E-mail: \n");
-    scanf("%s", &email);
-    getchar();
+    
+    do {
+        printf(" | Informe o seu E-mail: ");   
+        scanf("%s", Email);
+        getchar();
+
+    } while (!lerEmail(Email));
     
     do {
         printf(" | Informe o dia de nascimento: ");
