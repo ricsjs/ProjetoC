@@ -90,7 +90,7 @@ void cadastrar_advogado(){
     printf("///                                                                         ///\n");
     printf("///////////////////////////////////////////////////////////////////////////////\n");
     printf("\n");
-    char nome, Email[50], cpf[15], celular;
+    char nome, Email[50], cpf[15], celular[19];
     int dia, mes, ano;
 
     do{
@@ -123,9 +123,12 @@ void cadastrar_advogado(){
         
     } while(!valida_data(dia, mes, ano));
     
-    printf("Celular  (apenas números): \n");
-    scanf("%s", &celular);
-    getchar();
+   do{
+        printf("          Celular (apenas números | Insira DDD): ");
+        scanf("%[0-9]",celular);
+        getchar();
+    }while(!valida_cel(celular));
+    
     printf("Advogado cadastrado com sucesso! Tecle ENTER para voltar para área do advogado");
     getchar();
     
