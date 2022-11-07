@@ -87,7 +87,8 @@ void login(void){
             area_advogado();
             
         }else if (opc == 2){
-            area_cliente();
+            system("clear||cls");
+            menu_cliente(); 
             
         }else if(opc == 3){
             agenda_geral();
