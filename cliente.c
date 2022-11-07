@@ -6,7 +6,6 @@
 typedef struct cliente Cliente;
 
 struct cliente {
-  long int matricula;
   char nome[81];
   char email[50];
   char cpf[15];
@@ -27,7 +26,7 @@ void excluiCliente(Cliente*);
 int menu_cliente(void) {
   Cliente* fulano;
   int opcao;
-  printf("Programa Cadastro de Clientes\n\n");
+  printf("ÁREA DO CLIENTE\n\n");
   opcao = menuPrincipalcli();
   while (opcao != 0) {
     switch (opcao) {
@@ -45,7 +44,7 @@ int menu_cliente(void) {
 int menuPrincipalcli(){
     int op;
     printf("\nMenu Principal\n");
-    printf("1 - Cadastrar Aluno\n");
+    printf("1 - Cadastrar Cliente\n");
     printf("0 - Encerrar Programa\n");
     scanf("%d", &op);
     return op;

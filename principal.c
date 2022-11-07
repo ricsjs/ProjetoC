@@ -84,7 +84,7 @@ void login(void){
         
         if (opc == 1){
             system("clear||cls");
-            area_advogado();
+            menu_advogado();
             
         }else if (opc == 2){
             system("clear||cls");
