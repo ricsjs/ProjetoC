@@ -1,188 +1,161 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "agenda.h"
+#include <string.h>
 #include "validacoes.h"
 
-void agenda_geral(void){
-    int opc;
-    while (opc != 0){
-    system("clear||cls");
-    printf("/////////////////////////////////////////////\n");
-    printf("///       ===== AGENDA GERAL =====        ///\n");
-    printf("/////////////////////////////////////////////\n");
-    printf("///                                       ///\n");
-    printf("///  1 - CADASTRAR NOVO EVENTO            ///\n");
-    printf("///  2 - EDITAR EVENTO                    ///\n");
-    printf("///  3 - REMOVER EVENTO                   ///\n");
-    printf("///  0 - VOLTAR                           ///\n");
-    printf("/////////////////////////////////////////////\n");
+typedef struct agenda Agenda;
 
-    printf("Digite o número de uma opção: ");
-    scanf("%i", &opc);
-    
-     if (opc == 1){
-        cadastrar_evento();
-    }else if(opc == 2){
-        editar_evento();
-    }else if(opc == 3){
-        remover_evento();
-    }else if (opc > 4 || opc < 0){
-      getchar();
+struct agenda {
+  char nome[81];
+  char nome_cli[81];
+  char nome_adv[81];
+  char cpf_cli[15];
+  char cpf_adv[15];
+  char celular_cli[19];
+  char celular_adv[19];
+  char status;
+  int dia, mes, ano;
+  int token;
+};
 
-      printf("Número digitado não reconhecido, pressione enter para tentar novamente.");
+int menuPrincipalag(void);
+Agenda* preencheAgenda(void);
+void exibeAgenda(Agenda*);
+void gravaAgenda(Agenda*);
+Agenda* buscaAgenda(void);
+void listaAgenda(void);
+void excluiAgenda(Agenda*);
 
-      printf("Número digitado não reconhecido, pressione enter para tentar novamente.");
+int menu_agenda(void) {
+  Agenda* evento;
+  int opcao;
+  printf("Programa Cadastro de Eventos\n\n");
+  opcao = menuPrincipalag();
+  while (opcao != 0) {
+    switch (opcao) {
+        case 1 :  evento = preencheAgenda();
+            gravaAgenda(evento);
+            free(evento);
+            break;
 
-      getchar();
+        case 2 :  evento = buscaAgenda();
+            exibeAgenda(evento);
+            free(evento);
+            break;
     }
-    
-}
-}
-
-
-void listar_eventos(){
-    system("clear||cls");
-    printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///            ===================================================          ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
-    printf("///            = = = = = = =         SIG-LAW         = = = = = = =          ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
-    printf("///            ===================================================          ///\n");
-    printf("///          Developed by @ricsjs & @janderson1111 -- since Ago, 2022       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///                           LISTAGEM DE EVENTOS                           ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    getchar();
-    printf("Função ainda em desenvolvimento, tecle ENTER para voltar para a agenda geral");
-    getchar();
+    opcao = menuPrincipalag();
+  }
+  return 0;
 }
 
-void cadastrar_evento(void){
-    system("clear||cls");
-    printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///            ===================================================          ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
-    printf("///            = = = = = = =         SIG-LAW         = = = = = = =          ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
-    printf("///            ===================================================          ///\n");
-    printf("///          Developed by @ricsjs & @janderson1111 -- since Ago, 2022       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///                            CADASTRAR EVENTO                             ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    
-    int token_evento, dia, mes, ano;
-    char nome, cpf[15];
 
-    printf("Token do evento (apenas números): \n");
-    scanf("%i", &token_evento);
-    getchar();
-    printf("Nome do evento: \n");
-    scanf("%s", &nome);
-    getchar();
+int menuPrincipalag(){
+    int op;
+    printf("\nMenu Principal\n");
+    printf("1 - Cadastrar Evento\n");
+    printf("2 - Pesquisar Evento\n");
+    printf("3 - Editar Evento\n");
+    printf("4 - Excluir Evento\n");
+    printf("0 - Encerrar Programa\n");
+    scanf("%d", &op);
+    return op;
+}
+
+
+Agenda* preencheAgenda(void) {
+  Agenda* ag;
+  ag = (Agenda*) malloc(sizeof(Agenda));
+  printf("Informe o nome do evento: ");
+  scanf(" %80[^\n]", ag->nome);
+
+  printf("Informe um token para o evento: ");
+  scanf("%d", &ag->token);
+
+  
+    do{
+        printf("Informe o CPF do advogado: ");
+        scanf(" %15[^\n]", ag->cpf_adv);
+    }while(!valida_cpf(ag->cpf_adv));
 
     do{
-    printf("Informe o CPF do advogado vinculado ao evento (apenas números): \n");
-    scanf("%s", cpf);
-    getchar();
-    }while(!valida_cpf(cpf));
+        printf("Informe o CPF do cliente: ");
+        scanf(" %15[^\n]", ag->cpf_cli);
+    }while(!valida_cpf(ag->cpf_cli));
+
+  
+    do{
+        printf("Informe o celular do advogado: ");
+        scanf(" %19[^\n]", ag->celular_adv);
+    }while(!valida_cel(ag->celular_adv));
 
     do{
-    printf("Informe o CPF do cliente vinculado ao evento (apenas números): \n");
-    scanf("%s", cpf);
-    getchar();
-    }while(!valida_cpf(cpf));
+        printf("Informe o celular do cliente: ");
+        scanf(" %19[^\n]", ag->celular_cli);
+    }while(!valida_cel(ag->celular_cli));
+
 
     do {
-        printf("Data do evento\n");
+        printf("Data do evento:\n");
         printf("Informe o dia: ");
-        scanf("%d", &dia);
-        getchar();
+        scanf("%d", &ag->dia);
         printf("Informe o mês: ");
-        scanf("%d", &mes);
-        getchar();
+        scanf("%d", &ag->mes);
         printf("Informe o ano: ");
-        scanf("%d", &ano);
-        getchar();
-        
-    } while(!valida_data(dia, mes, ano));
-    printf("Evento cadastrado com sucesso! Tecle ENTER para voltar para área a agenda geral");
-    getchar();
-    
+        scanf("%d", &ag->ano);
+    } while(!valida_data(ag->dia, ag->mes, ag->ano));
 
+    ag->status = 'a';
+    return ag;
 }
 
-void editar_evento(void){
-    system("clear||cls");
-    printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///            ===================================================          ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
-    printf("///            = = = = = = =         SIG-LAW         = = = = = = =          ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
-    printf("///            ===================================================          ///\n");
-    printf("///          Developed by @ricsjs & @janderson1111 -- since Ago, 2022       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///                              EDITAR EVENTO                              ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
-    
-    int token;
-    printf("Informe o token do evento para editar (apenas números): \n");
-    scanf("%i", &token);
-    getchar();
-    printf("Função ainda em desenvolvimento, tecle ENTER para voltar para a agenda geral");
-    getchar();
-    
-
+void gravaAgenda(Agenda* ag) {
+  FILE* fp;
+  fp = fopen("eventos.dat", "ab");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  fwrite(ag, sizeof(Agenda), 1, fp);
+  fclose(fp);
 }
-void remover_evento(void){
-    system("clear||cls");
-    printf("\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///            ===================================================          ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
-    printf("///            = = = = = = =         SIG-LAW         = = = = = = =          ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = = = =          ///\n");
-    printf("///            ===================================================          ///\n");
-    printf("///          Developed by @ricsjs & @janderson1111 -- since Ago, 2022       ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("///                                                                         ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///                             REMOVER EVENTO                              ///\n");
-    printf("///            = = = = = = = = = = = = = = = = = = = = = = = =              ///\n");
-    printf("///                                                                         ///\n");
-    printf("///////////////////////////////////////////////////////////////////////////////\n");
-    printf("\n");
 
-    int token;
-    printf("Informe o token do evento para remover (apenas números): \n");
-    scanf("%i", &token);
-    getchar();
-    printf("Função ainda em desenvolvimento, tecle ENTER para voltar para a agenda geral");
-    getchar();
-    
+void exibeAgenda(Agenda* ag) {
+  if ((ag == NULL) || (ag->status == 'i')) {
+    printf("\n= = = Evento Inexistente = = =\n");
+  } else {
+    printf("\n= = = Evento Cadastrado = = =\n");
+    printf("Nome do evento: %s\n", ag->nome);
+    printf("Nome do Advogado: %s\n", ag->nome_adv);
+    printf("Nome do Cliente: %s\n", ag->nome_cli);
+    printf("CPF do Advogado: %s\n", ag->cpf_adv);
+    printf("CPF do Cliente: %s\n", ag->cpf_cli);
+    printf("Data do evento: %d/%d/%d\n", ag->dia, ag->mes, ag->ano);
+  }
 }
+
+Agenda* buscaAgenda(void) {
+  FILE* fp;
+  Agenda* ag;
+  int buscatoken;
+  printf("\n = Busca Evento = \n"); 
+  printf("Informe o token: "); 
+  scanf("%d", &buscatoken);
+  ag = (Agenda*) malloc(sizeof(Agenda));
+  fp = fopen("eventos.dat", "ab");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  while(!feof(fp)) {
+    fread(ag, sizeof(Agenda), 1, fp);
+    if ((ag->token == buscatoken) && (ag->status != 'i')) {
+      fclose(fp);
+      return ag;
+    }
+  }
+  fclose(fp);
+  return NULL;
+}
+

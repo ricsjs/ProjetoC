@@ -91,7 +91,7 @@ void login(void){
             menu_cliente(); 
             
         }else if(opc == 3){
-            agenda_geral();
+            menu_agenda();
         
         }else if (opc == 4){
             area_relatorio();
