@@ -12,6 +12,7 @@ struct advogado {
   char celular[19];
   char status;
   int dia, mes, ano;
+  int token;
 };
 
 int menuPrincipaladv(void);
@@ -22,16 +23,20 @@ Advogado* buscaAdvogado(void);
 void listaAdvogados(void);
 void excluiAdvogado(Advogado*);
 
-
 int menu_advogado(void) {
   Advogado* fulano;
   int opcao;
-  printf("ÁREA DO ADVOGADO\n\n");
+  printf("Programa Cadastro de Advogados\n\n");
   opcao = menuPrincipaladv();
   while (opcao != 0) {
     switch (opcao) {
         case 1 :  fulano = preencheAdvogado();
             gravaAdvogado(fulano);
+            free(fulano);
+            break;
+
+        case 2 :  fulano = buscaAdvogado();
+            exibeAdvogado(fulano);
             free(fulano);
             break;
     }
@@ -45,6 +50,9 @@ int menuPrincipaladv(){
     int op;
     printf("\nMenu Principal\n");
     printf("1 - Cadastrar Advogado\n");
+    printf("2 - Pesquisar Advogado\n");
+    printf("3 - Editar Advogado\n");
+    printf("4 - Excluir Advogado\n");
     printf("0 - Encerrar Programa\n");
     scanf("%d", &op);
     return op;
@@ -56,6 +64,9 @@ Advogado* preencheAdvogado(void) {
   adv = (Advogado*) malloc(sizeof(Advogado));
   printf("Informe o nome do advogado: ");
   scanf(" %80[^\n]", adv->nome);
+
+  printf("Informe um token para o advogado: ");
+  scanf("%d", &adv->token);
 
     do {
         printf("Informe o e-mail do advogado: ");
@@ -100,5 +111,43 @@ void gravaAdvogado(Advogado* adv) {
   }
   fwrite(adv, sizeof(Advogado), 1, fp);
   fclose(fp);
+}
+
+void exibeAdvogado(Advogado* adv) {
+  if ((adv == NULL) || (adv->status == 'i')) {
+    printf("\n= = = Advogado Inexistente = = =\n");
+  } else {
+    printf("\n= = = Advogado Cadastrado = = =\n");
+    printf("Nome do Advogado: %s\n", adv->nome);
+    printf("E-mail: %s\n", adv->email);
+    printf("CPF: %s\n", adv->cpf);
+    printf("Celular: %s\n", adv->celular);
+    printf("Situação do Advogado: %c\n", adv->status);
+  }
+}
+
+Advogado* buscaAdvogado(void) {
+  FILE* fp;
+  Advogado* adv;
+  int buscatoken;
+  printf("\n = Busca Advogado = \n"); 
+  printf("Informe o token: "); 
+  scanf("%d", &buscatoken);
+  adv = (Advogado*) malloc(sizeof(Advogado));
+  fp = fopen("advogados.dat", "ab");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  while(!feof(fp)) {
+    fread(adv, sizeof(Advogado), 1, fp);
+    if ((adv->token == buscatoken) && (adv->status != 'i')) {
+      fclose(fp);
+      return adv;
+    }
+  }
+  fclose(fp);
+  return NULL;
 }
 
