@@ -25,6 +25,7 @@ void gravaAgenda(Agenda*);
 Agenda* buscaAgenda(void);
 void listaAgenda(void);
 void excluiAgenda(Agenda*);
+void exibeEventoAposListagem(Agenda*);
 
 int menu_agenda(void) {
   Agenda* evento;
@@ -42,6 +43,9 @@ int menu_agenda(void) {
             exibeAgenda(evento);
             free(evento);
             break;
+
+        case 3 :  listaAgenda();
+            break;
     }
     opcao = menuPrincipalag();
   }
@@ -54,8 +58,9 @@ int menuPrincipalag(){
     printf("\nMenu Principal\n");
     printf("1 - Cadastrar Evento\n");
     printf("2 - Pesquisar Evento\n");
-    printf("3 - Editar Evento\n");
-    printf("4 - Excluir Evento\n");
+    printf("3 - Listar Eventos\n");
+    printf("4 - Editar Evento\n");
+    printf("5 - Excluir Evento\n");
     printf("0 - Encerrar Programa\n");
     scanf("%d", &op);
     return op;
@@ -71,6 +76,11 @@ Agenda* preencheAgenda(void) {
   printf("Informe um token para o evento: ");
   scanf("%d", &ag->token);
 
+  printf("Informe o nome do advogado: ");
+  scanf(" %80[^\n]", ag->nome_adv);
+
+  printf("Informe o nome do advogado: ");
+  scanf(" %80[^\n]", ag->nome_cli);
   
     do{
         printf("Informe o CPF do advogado: ");
@@ -157,5 +167,41 @@ Agenda* buscaAgenda(void) {
   }
   fclose(fp);
   return NULL;
+}
+
+void exibeEventoAposListagem(Agenda* ag) {
+  if ((ag == NULL) || (ag->status == 'i')) {
+    printf("\n= = = Evento Inexistente = = =\n");
+  } else {
+    printf("\n= = = Evento = = =\n");
+    printf("Nome do evento: %s\n", ag->nome);
+    printf("Nome do Advogado: %s\n", ag->nome_adv);
+    printf("Nome do Cliente: %s\n", ag->nome_cli);
+    printf("CPF do Advogado: %s\n", ag->cpf_adv);
+    printf("CPF do Cliente: %s\n", ag->cpf_cli);
+    printf("Data do evento: %d/%d/%d\n", ag->dia, ag->mes, ag->ano);
+  }
+}
+
+void listaAgenda(void) {
+  FILE* fp;
+  Agenda* ag;
+  printf("\n = Lista de Eventos = \n"); 
+  ag = (Agenda*) malloc(sizeof(Agenda));
+  fp = fopen("eventos.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  while(fread(ag, sizeof(Agenda), 1, fp)) {
+    if (ag->status != 'i') {
+      exibeEventoAposListagem(ag);
+    }else{
+      printf("Não existem advogados cadastrados");
+    }
+  }
+  fclose(fp);
+  free(ag);
 }
 

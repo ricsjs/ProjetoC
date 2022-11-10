@@ -156,7 +156,7 @@ Advogado* buscaAdvogado(void) {
   return NULL;
 }
 
-void exibeAdvogado(Advogado* adv) {
+void exibeAdvogadoAposListagem(Advogado* adv) {
   if ((adv == NULL) || (adv->status == 'i')) {
     printf("\n= = = Advogado Inexistente = = =\n");
   } else {
