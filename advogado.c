@@ -39,6 +39,9 @@ int menu_advogado(void) {
             exibeAdvogado(fulano);
             free(fulano);
             break;
+        
+        case 3 :  listaAdvogados();
+            break;
     }
     opcao = menuPrincipaladv();
   }
@@ -51,8 +54,9 @@ int menuPrincipaladv(){
     printf("\nMenu Principal\n");
     printf("1 - Cadastrar Advogado\n");
     printf("2 - Pesquisar Advogado\n");
-    printf("3 - Editar Advogado\n");
-    printf("4 - Excluir Advogado\n");
+    printf("3 - Listar Advogados\n");
+    printf("4 - Editar Advogado\n");
+    printf("5 - Excluir Advogado\n");
     printf("0 - Encerrar Programa\n");
     scanf("%d", &op);
     return op;
@@ -150,4 +154,27 @@ Advogado* buscaAdvogado(void) {
   fclose(fp);
   return NULL;
 }
+
+void listaAdvogados(void) {
+  FILE* fp;
+  Advogado* adv;
+  printf("\n = Lista de Advogados = \n"); 
+  adv = (Advogado*) malloc(sizeof(Advogado));
+  fp = fopen("advogados.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  while(fread(adv, sizeof(Advogado), 1, fp)) {
+    if (adv->status != 'i') {
+      exibeAdvogado(adv);
+    }else{
+      printf("Não existem advogados cadastrados");
+    }
+  }
+  fclose(fp);
+  free(adv);
+}
+
 
