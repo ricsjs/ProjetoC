@@ -22,6 +22,7 @@ void gravaAdvogado(Advogado*);
 Advogado* buscaAdvogado(void);
 void listaAdvogados(void);
 void excluiAdvogado(Advogado*);
+void exibeAdvogadoAposListagem(Advogado*);
 
 int menu_advogado(void) {
   Advogado* fulano;
@@ -155,6 +156,18 @@ Advogado* buscaAdvogado(void) {
   return NULL;
 }
 
+void exibeAdvogado(Advogado* adv) {
+  if ((adv == NULL) || (adv->status == 'i')) {
+    printf("\n= = = Advogado Inexistente = = =\n");
+  } else {
+    printf("Nome do Advogado: %s\n", adv->nome);
+    printf("E-mail: %s\n", adv->email);
+    printf("CPF: %s\n", adv->cpf);
+    printf("Celular: %s\n", adv->celular);
+    printf("Situação do Advogado: %c\n", adv->status);
+  }
+}
+
 void listaAdvogados(void) {
   FILE* fp;
   Advogado* adv;
@@ -168,7 +181,7 @@ void listaAdvogados(void) {
   }
   while(fread(adv, sizeof(Advogado), 1, fp)) {
     if (adv->status != 'i') {
-      exibeAdvogado(adv);
+      exibeAdvogadoAposListagem(adv);
     }else{
       printf("Não existem advogados cadastrados");
     }

@@ -22,6 +22,7 @@ void gravaCliente(Cliente*);
 Cliente* buscaCliente(void);
 void listaClientes(void);
 void excluiCliente(Cliente*);
+void exibeClienteAposListagem(Cliente*);
 
 
 int menu_cliente(void) {
@@ -40,6 +41,9 @@ int menu_cliente(void) {
             exibeCliente(fulano);
             free(fulano);
             break;
+
+        case 3 :  listaClientes();
+            break;
     }
     opcao = menuPrincipalcli();
   }
@@ -52,8 +56,9 @@ int menuPrincipalcli(){
     printf("\nMenu Principal\n");
     printf("1 - Cadastrar Cliente\n");
     printf("2 - Pesquisar Cliente\n");
-    printf("3 - Editar Cliente\n");
-    printf("4 - Excluir Cliente\n");
+    printf("3 - Listar Clientes\n");
+    printf("4 - Editar Cliente\n");
+    printf("5 - Excluir Cliente\n");
     printf("0 - Encerrar Programa\n");
     scanf("%d", &op);
     return op;
@@ -151,4 +156,39 @@ Cliente* buscaCliente(void) {
   fclose(fp);
   return NULL;
 }
+
+void exibeClienteAposListagem(Cliente* cli) {
+  if ((cli == NULL) || (cli->status == 'i')) {
+    printf("\n= = = Cliente Inexistente = = =\n");
+  } else {
+    printf("Nome do Cliente: %s\n", cli->nome);
+    printf("E-mail: %s\n", cli->email);
+    printf("CPF: %s\n", cli->cpf);
+    printf("Celular: %s\n", cli->celular);
+    printf("Situação do Cliente: %c\n", cli->status);
+  }
+}
+
+void listaClientes(void) {
+  FILE* fp;
+  Cliente* cli;
+  printf("\n = Lista de Clientes = \n"); 
+  cli = (Cliente*) malloc(sizeof(Cliente));
+  fp = fopen("clientes.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  while(fread(cli, sizeof(Cliente), 1, fp)) {
+    if (cli->status != 'i') {
+      exibeClienteAposListagem(cli);
+    }else{
+      printf("Não existem clientes cadastrados");
+    }
+  }
+  fclose(fp);
+  free(cli);
+}
+
 
