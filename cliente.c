@@ -44,6 +44,13 @@ int menu_cliente(void) {
 
         case 3 :  listaClientes();
             break;
+
+        //case 4: editarCliente();
+
+        case 5: fulano = buscaCliente();
+            excluiCliente(fulano);
+            free(fulano);
+            break;
     }
     opcao = menuPrincipalcli();
   }
@@ -189,6 +196,39 @@ void listaClientes(void) {
   }
   fclose(fp);
   free(cli);
+}
+
+void excluiCliente(Cliente* cliLido) {
+  FILE* fp;
+  Cliente* cliArq;
+  int achou = 0;
+  if (cliLido == NULL) {
+    printf("Ops! O cliente informado não existe!\n");
+  }
+  else {
+    cliArq = (Cliente*) malloc(sizeof(Cliente));
+    fp = fopen("clientes.dat", "r+b");
+    if (fp == NULL) {
+      printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+      printf("Não é possível continuar este programa...\n");
+      exit(1);
+    }
+    while(!feof(fp)) {
+      fread(cliArq, sizeof(Cliente), 1, fp);
+      if ((cliArq->token == cliLido->token) && (cliArq->status != 'i')) {
+        achou = 1;
+        cliArq->status = 'x';
+        fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
+        fwrite(cliArq, sizeof(Cliente), 1, fp);
+        printf("\nCliente excluído com sucesso!\n");
+      }
+    }
+    if (!achou) {
+      printf("\nCliente não encontrado!\n");
+    }
+    fclose(fp);
+    free(cliArq);
+  }
 }
 
 

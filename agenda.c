@@ -46,6 +46,13 @@ int menu_agenda(void) {
 
         case 3 :  listaAgenda();
             break;
+
+         //case 4: editarAgenda();
+
+        case 5: evento = buscaAgenda();
+            excluiAgenda(evento);
+            free(evento);
+            break;
     }
     opcao = menuPrincipalag();
   }
@@ -203,5 +210,38 @@ void listaAgenda(void) {
   }
   fclose(fp);
   free(ag);
+}
+
+void excluiAgenda(Agenda* agLido) {
+  FILE* fp;
+  Agenda* agArq;
+  int achou = 0;
+  if (agLido == NULL) {
+    printf("Ops! O evento informado não existe!\n");
+  }
+  else {
+    agArq = (Agenda*) malloc(sizeof(Agenda));
+    fp = fopen("eventos.dat", "r+b");
+    if (fp == NULL) {
+      printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+      printf("Não é possível continuar este programa...\n");
+      exit(1);
+    }
+    while(!feof(fp)) {
+      fread(agArq, sizeof(Agenda), 1, fp);
+      if ((agArq->token == agLido->token) && (agArq->status != 'i')) {
+        achou = 1;
+        agArq->status = 'x';
+        fseek(fp, -1*sizeof(Agenda), SEEK_CUR);
+        fwrite(agArq, sizeof(Agenda), 1, fp);
+        printf("\nEvento excluído com sucesso!\n");
+      }
+    }
+    if (!achou) {
+      printf("\nEvento não encontrado!\n");
+    }
+    fclose(fp);
+    free(agArq);
+  }
 }
 

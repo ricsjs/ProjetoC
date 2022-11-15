@@ -43,6 +43,13 @@ int menu_advogado(void) {
         
         case 3 :  listaAdvogados();
             break;
+
+        //case 4: editarAdvogado();
+
+        case 5: fulano = buscaAdvogado();
+            excluiAdvogado(fulano);
+            free(fulano);
+            break;
     }
     opcao = menuPrincipaladv();
   }
@@ -188,6 +195,39 @@ void listaAdvogados(void) {
   }
   fclose(fp);
   free(adv);
+}
+
+void excluiAdvogado(Advogado* advLido) {
+  FILE* fp;
+  Advogado* advArq;
+  int achou = 0;
+  if (advLido == NULL) {
+    printf("Ops! O advogado informado não existe!\n");
+  }
+  else {
+    advArq = (Advogado*) malloc(sizeof(Advogado));
+    fp = fopen("advogados.dat", "r+b");
+    if (fp == NULL) {
+      printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+      printf("Não é possível continuar este programa...\n");
+      exit(1);
+    }
+    while(!feof(fp)) {
+      fread(advArq, sizeof(Advogado), 1, fp);
+      if ((advArq->token == advLido->token) && (advArq->status != 'i')) {
+        achou = 1;
+        advArq->status = 'x';
+        fseek(fp, -1*sizeof(Advogado), SEEK_CUR);
+        fwrite(advArq, sizeof(Advogado), 1, fp);
+        printf("\nAdvogado excluído com sucesso!\n");
+      }
+    }
+    if (!achou) {
+      printf("\nAdvogado não encontrado!\n");
+    }
+    fclose(fp);
+    free(advArq);
+  }
 }
 
 
