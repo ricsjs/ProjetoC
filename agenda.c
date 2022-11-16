@@ -187,6 +187,7 @@ void exibeEventoAposListagem(Agenda* ag) {
     printf("CPF do Advogado: %s\n", ag->cpf_adv);
     printf("CPF do Cliente: %s\n", ag->cpf_cli);
     printf("Data do evento: %d/%d/%d\n", ag->dia, ag->mes, ag->ano);
+    printf("\n\n");
   }
 }
 
@@ -235,6 +236,7 @@ void excluiAgenda(Agenda* agLido) {
         fseek(fp, -1*sizeof(Agenda), SEEK_CUR);
         fwrite(agArq, sizeof(Agenda), 1, fp);
         printf("\nEvento excluído com sucesso!\n");
+        break;
       }
     }
     if (!achou) {

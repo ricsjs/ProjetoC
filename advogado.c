@@ -172,6 +172,7 @@ void exibeAdvogadoAposListagem(Advogado* adv) {
     printf("CPF: %s\n", adv->cpf);
     printf("Celular: %s\n", adv->celular);
     printf("Situação do Advogado: %c\n", adv->status);
+    printf("\n\n");
   }
 }
 
@@ -220,6 +221,7 @@ void excluiAdvogado(Advogado* advLido) {
         fseek(fp, -1*sizeof(Advogado), SEEK_CUR);
         fwrite(advArq, sizeof(Advogado), 1, fp);
         printf("\nAdvogado excluído com sucesso!\n");
+        break;
       }
     }
     if (!achou) {

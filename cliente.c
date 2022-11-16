@@ -173,6 +173,7 @@ void exibeClienteAposListagem(Cliente* cli) {
     printf("CPF: %s\n", cli->cpf);
     printf("Celular: %s\n", cli->celular);
     printf("Situação do Cliente: %c\n", cli->status);
+    printf("\n\n");
   }
 }
 
@@ -221,6 +222,7 @@ void excluiCliente(Cliente* cliLido) {
         fseek(fp, -1*sizeof(Cliente), SEEK_CUR);
         fwrite(cliArq, sizeof(Cliente), 1, fp);
         printf("\nCliente excluído com sucesso!\n");
+        break;
       }
     }
     if (!achou) {
