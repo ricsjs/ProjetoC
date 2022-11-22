@@ -27,7 +27,9 @@ void exibeAdvogadoAposListagem(Advogado*);
 int menu_advogado(void) {
   Advogado* fulano;
   int opcao;
-  printf("Programa Cadastro de Advogados\n\n");
+  printf("//////////////////////////////////////////////\n");
+  printf("///     ===== AREA DOS ADVOGADOS =====     ///\n");
+  printf("//////////////////////////////////////////////\n");
   opcao = menuPrincipaladv();
   while (opcao != 0) {
     switch (opcao) {
@@ -59,13 +61,18 @@ int menu_advogado(void) {
 
 int menuPrincipaladv(){
     int op;
-    printf("\nMenu Principal\n");
-    printf("1 - Cadastrar Advogado\n");
-    printf("2 - Pesquisar Advogado\n");
-    printf("3 - Listar Advogados\n");
-    printf("4 - Editar Advogado\n");
-    printf("5 - Excluir Advogado\n");
-    printf("0 - Encerrar Programa\n");
+    printf("\n//////////////////////////////////////////////\n");
+    printf("///           ===== MENU =====             ///\n");
+    printf("//////////////////////////////////////////////\n");
+    printf("///                                        ///\n");
+    printf("///    1 - Cadastrar Advogado              ///\n");
+    printf("///    2 - Pesquisar Advogado              ///\n");
+    printf("///    3 - Listar Advogados                ///\n");
+    printf("///    4 - Editar Advogado                 ///\n");
+    printf("///    5 - Excluir Advogado                ///\n");
+    printf("///    0 - Voltar                          ///\n");
+    printf("///                                        ///\n");
+    printf("//////////////////////////////////////////////\n");
     scanf("%d", &op);
     return op;
 }
@@ -94,7 +101,7 @@ Advogado* preencheAdvogado(void) {
 
   
     do{
-        printf("Informe o celular do advogado: ");
+        printf("Informe o celular junto com o DDD do advogado(apenas numeros): ");
         scanf(" %19[^\n]", adv->celular);
     }while(!valida_cel(adv->celular));
 

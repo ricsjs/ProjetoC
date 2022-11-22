@@ -6,15 +6,16 @@ void area_relatorio(void){
 
     int opc;
     while ( opc!= 0){
-        printf("////////////////////////////////////////////////");
-        printf("///      ----- ÁREA DE RELATORIO -----       ///");
-        printf("////////////////////////////////////////////////");
-        printf("///                                          ///");
-        printf("///        1- TODOS OS ADVOGADOS             ///");
-        printf("///        2- TODOS OS CLIENTES              ///");
-        printf("///        3- LISTA DE EVENTOS               ///");
-        printf("///        0- VOLTAR                         ///");
-        printf("////////////////////////////////////////////////");
+        printf("////////////////////////////////////////////////\n");
+        printf("///      ----- ÁREA DE RELATORIO -----       ///\n");
+        printf("////////////////////////////////////////////////\n");
+        printf("///                                          ///\n");
+        printf("///        1- TODOS OS ADVOGADOS             ///\n");
+        printf("///        2- TODOS OS CLIENTES              ///\n");
+        printf("///        3- LISTA DE EVENTOS               ///\n");
+        printf("///        0- VOLTAR                         ///\n");
+        printf("///                                          ///\n");
+        printf("////////////////////////////////////////////////\n");
 
         printf("Digite o número de uma opção: ");
         scanf("%i", &opc);

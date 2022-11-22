@@ -28,7 +28,9 @@ void exibeClienteAposListagem(Cliente*);
 int menu_cliente(void) {
   Cliente* fulano;
   int opcao;
-  printf("ÁREA DO CLIENTE\n\n");
+  printf("//////////////////////////////////////////////\n");
+  printf("///     ===== AREA DOS CLIENTES =====      ///\n");
+  printf("//////////////////////////////////////////////\n");
   opcao = menuPrincipalcli();
   while (opcao != 0) {
     switch (opcao) {
@@ -60,13 +62,18 @@ int menu_cliente(void) {
 
 int menuPrincipalcli(){
     int op;
-    printf("\nMenu Principal\n");
-    printf("1 - Cadastrar Cliente\n");
-    printf("2 - Pesquisar Cliente\n");
-    printf("3 - Listar Clientes\n");
-    printf("4 - Editar Cliente\n");
-    printf("5 - Excluir Cliente\n");
-    printf("0 - Encerrar Programa\n");
+    printf("\n//////////////////////////////////////////////\n");
+    printf("///           ===== MENU =====             ///\n");
+    printf("//////////////////////////////////////////////\n");
+    printf("///                                        ///\n");
+    printf("///    1 - Cadastrar Cliente               ///\n");
+    printf("///    2 - Pesquisar Cliente               ///\n");
+    printf("///    3 - Listar Cliente                  ///\n");
+    printf("///    4 - Editar Cliente                  ///\n");
+    printf("///    5 - Excluir Cliente                 ///\n");
+    printf("///    0 - Volta                           ///\n");
+    printf("///                                        ///\n");
+    printf("//////////////////////////////////////////////\n");
     scanf("%d", &op);
     return op;
 }
@@ -78,7 +85,7 @@ Cliente* preencheCliente(void) {
   printf("Informe o nome do cliente: ");
   scanf(" %80[^\n]", cli->nome);
 
-  printf("Informe um token para o advogado: ");
+  printf("Informe um token para o Cliente: ");
   scanf("%d", &cli->token);
 
     do {

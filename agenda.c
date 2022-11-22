@@ -30,7 +30,9 @@ void exibeEventoAposListagem(Agenda*);
 int menu_agenda(void) {
   Agenda* evento;
   int opcao;
-  printf("Programa Cadastro de Eventos\n\n");
+  printf("//////////////////////////////////////////////\n");
+  printf("///      ===== AREA DOS EVENTOS =====      ///\n");
+  printf("//////////////////////////////////////////////\n");
   opcao = menuPrincipalag();
   while (opcao != 0) {
     switch (opcao) {
@@ -61,14 +63,20 @@ int menu_agenda(void) {
 
 
 int menuPrincipalag(){
+    
     int op;
-    printf("\nMenu Principal\n");
-    printf("1 - Cadastrar Evento\n");
-    printf("2 - Pesquisar Evento\n");
-    printf("3 - Listar Eventos\n");
-    printf("4 - Editar Evento\n");
-    printf("5 - Excluir Evento\n");
-    printf("0 - Encerrar Programa\n");
+    printf("\n//////////////////////////////////////////////\n");
+    printf("///           ===== MENU =====             ///\n");
+    printf("//////////////////////////////////////////////\n");
+    printf("///                                        ///\n");
+    printf("///    1 - Cadastrar Evento                ///\n");
+    printf("///    2 - Pesquisar Evento                ///\n");
+    printf("///    3 - Listar Evento                   ///\n");
+    printf("///    4 - Editar Evento                   ///\n");
+    printf("///    5 - Excluir Evento                  ///\n");
+    printf("///    0 - Volta                           ///\n");
+    printf("///                                        ///\n");
+    printf("//////////////////////////////////////////////\n");
     scanf("%d", &op);
     return op;
 }

@@ -22,11 +22,17 @@ void login(void){
 
     char user, pass;
 
-    printf("////////////////////////////////////////\n");
-    printf("///                                  ///\n");
-    printf("///  OLÁ, SEJA BEM-VINDO AO SIG-LAW  ///\n");
-    printf("///                                  ///\n");
-    printf("////////////////////////////////////////\n");
+    printf("//////////////////////////////////////////////////////////////////\n");
+    printf("///                                                            ///\n");
+    printf("///               OLÁ, SEJA BEM-VINDO AO SIG-LAW               ///\n");
+    printf("///                                                            ///\n");
+    printf("//////////////////////////////////////////////////////////////////\n");
+    printf("///                                                            ///\n");
+    printf("///  ESSE PROGRAMA FOI DESENVOLVIDO PARA AUXILIAR ESCRITORIOS  ///\n");
+    printf("///  DE ADVOCACIAS EM AGENDAMENTO DE EVENTOS                   ///\n");
+    printf("///                                                            ///\n");
+    printf("//////////////////////////////////////////////////////////////////\n");
+
 
     printf("Digite seu nome de usuário: \n");
     scanf("%s", &user);
@@ -42,8 +48,6 @@ void login(void){
         printf("Digite sua senha: \n");
         scanf("%s", &pass);
     }
-
-    printf("Usuário logado com sucesso!\n");
     system("clear||cls");
     principal();
 
@@ -56,7 +60,7 @@ void login(void){
     while (opc !=0){
         system("clear||cls");
         printf("/////////////////////////////////////////////////////////////////\n");
-        printf("///             ========== Semana 5 ==========                ///\n");
+        printf("///        ========== SISTEMA DE ADVOCACIA ==========         ///\n");
         printf("/////////////////////////////////////////////////////////////////\n");
         printf("///                                                           ///\n");
         printf("///  Universidade Federal do Rio Grande do Norte              ///\n");
@@ -70,12 +74,12 @@ void login(void){
         printf("///               ========== MENU ==========                  ///\n");
         printf("/////////////////////////////////////////////////////////////////\n");
         printf("///                                                           ///\n");
-        printf("///  1 - ÁREA DO ADVOGADO;                                    ///\n");
-        printf("///  2 - ÁREA DO CLIENTE;                                     ///\n");
-        printf("///  3 - AGENDA GERAL;                                        ///\n");
-        printf("///  4 - RELATORIO GERAL;                                     ///\n");
-        printf("///  5 - SOBRE O PROGRAMA;                                    ///\n");
-        printf("///  0 - SAIR;                                                ///\n");
+        printf("///  1 - ÁREA DO ADVOGADO                                     ///\n");
+        printf("///  2 - ÁREA DO CLIENTE                                      ///\n");
+        printf("///  3 - AGENDA GERAL                                         ///\n");
+        printf("///  4 - RELATORIO GERAL                                      ///\n");
+        printf("///  5 - SOBRE O PROGRAMA                                     ///\n");
+        printf("///  0 - SAIR                                                 ///\n");
         printf("///                                                           ///\n");
         printf("/////////////////////////////////////////////////////////////////\n");
 
@@ -91,12 +95,15 @@ void login(void){
             menu_cliente(); 
             
         }else if(opc == 3){
+            system("clear||cls");
             menu_agenda();
         
         }else if (opc == 4){
+            system("clear||cls");
             area_relatorio();
 
         }else if(opc == 5){
+            system("clear||cls");
             sobre();            
         } else if (opc == 0){
             printf("Programa finalizado.");
