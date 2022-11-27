@@ -26,6 +26,7 @@ Agenda* buscaAgenda(void);
 void listaAgenda(void);
 void excluiAgenda(Agenda*);
 void exibeEventoAposListagem(Agenda*);
+void editarAgenda(void);
 
 int menu_agenda(void) {
   Agenda* evento;
@@ -49,7 +50,8 @@ int menu_agenda(void) {
         case 3 :  listaAgenda();
             break;
 
-         //case 4: editarAgenda();
+         case 4: editarAgenda();
+            break;
 
         case 5: evento = buscaAgenda();
             excluiAgenda(evento);
@@ -254,4 +256,95 @@ void excluiAgenda(Agenda* agLido) {
     free(agArq);
   }
 }
+
+
+void editarCliente(void) {
+  FILE* fp;
+  Agenda* ag;
+  int achou;
+  char resp;
+  char procurado[15];
+  fp = fopen("eventos.dat", "r+b");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar o programa...\n");
+    exit(1);
+  }
+  printf("\n\n");
+  printf("= = Editar Agenda = = \n");
+  printf("Informe o nome do evento a ser alterado: ");
+  scanf(" %14[^\n]", procurado);
+  ag = (Agenda*) malloc(sizeof(Agenda));
+  achou = 0;
+  while((!achou) && (fread(ag, sizeof(Agenda), 1, fp))) {
+   if ((strcmp(ag->nome, procurado) == 0) && (ag->status == 'a')) {
+     achou = 1;
+   }
+  }
+  if (achou) {
+    exibeAgenda(ag);
+    getchar();
+    printf("Deseja realmente editar este evento (s/n)? ");
+    scanf("%c", &resp);
+    if (resp == 's' || resp == 'S') {
+
+      printf("Informe o nome do evento: ");
+  scanf(" %80[^\n]", ag->nome);
+
+  printf("Informe um token para o evento: ");
+  scanf("%d", &ag->token);
+
+  printf("Informe o nome do advogado: ");
+  scanf(" %80[^\n]", ag->nome_adv);
+
+  printf("Informe o nome do advogado: ");
+  scanf(" %80[^\n]", ag->nome_cli);
+  
+    do{
+        printf("Informe o CPF do advogado: ");
+        scanf(" %15[^\n]", ag->cpf_adv);
+    }while(!valida_cpf(ag->cpf_adv));
+
+    do{
+        printf("Informe o CPF do cliente: ");
+        scanf(" %15[^\n]", ag->cpf_cli);
+    }while(!valida_cpf(ag->cpf_cli));
+
+  
+    do{
+        printf("Informe o celular do advogado: ");
+        scanf(" %19[^\n]", ag->celular_adv);
+    }while(!valida_cel(ag->celular_adv));
+
+    do{
+        printf("Informe o celular do cliente: ");
+        scanf(" %19[^\n]", ag->celular_cli);
+    }while(!valida_cel(ag->celular_cli));
+
+
+    do {
+        printf("Data do evento:\n");
+        printf("Informe o dia: ");
+        scanf("%d", &ag->dia);
+        printf("Informe o mês: ");
+        scanf("%d", &ag->mes);
+        printf("Informe o ano: ");
+        scanf("%d", &ag->ano);
+    } while(!valida_data(ag->dia, ag->mes, ag->ano));
+
+    ag->status = 'a';
+
+      fseek(fp, (-1)*sizeof(Agenda), SEEK_CUR);
+      fwrite(ag, sizeof(Agenda), 1, fp);
+      printf("\n Evento editado com sucesso!!\n");
+    } else {
+      printf("\nOk, os dados não foram alterados\n");
+    }
+  } else {
+    printf("O evento %s não foi encontrado...\n", procurado);
+  }
+  free(ag);
+  fclose(fp);
+}
+
 
