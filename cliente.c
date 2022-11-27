@@ -23,6 +23,7 @@ Cliente* buscaCliente(void);
 void listaClientes(void);
 void excluiCliente(Cliente*);
 void exibeClienteAposListagem(Cliente*);
+void editarCliente(void);
 
 
 int menu_cliente(void) {
@@ -47,7 +48,8 @@ int menu_cliente(void) {
         case 3 :  listaClientes();
             break;
 
-        //case 4: editarCliente();
+        case 4: editarCliente();
+            break;
 
         case 5: fulano = buscaCliente();
             excluiCliente(fulano);
@@ -238,6 +240,87 @@ void excluiCliente(Cliente* cliLido) {
     fclose(fp);
     free(cliArq);
   }
+}
+
+
+void editarCliente(void) {
+  FILE* fp;
+  Cliente* cli;
+  int achou;
+  char resp;
+  char procurado[15];
+  fp = fopen("clientes.dat", "r+b");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar o programa...\n");
+    exit(1);
+  }
+  printf("\n\n");
+  printf("= = Editar Cliente = = \n");
+  printf("Informe o nome do cliente a ser alterado: ");
+  scanf(" %14[^\n]", procurado);
+  cli = (Cliente*) malloc(sizeof(Cliente));
+  achou = 0;
+  while((!achou) && (fread(cli, sizeof(Cliente), 1, fp))) {
+   if ((strcmp(cli->nome, procurado) == 0) && (cli->status == 'a')) {
+     achou = 1;
+   }
+  }
+  if (achou) {
+    exibeCliente(cli);
+    getchar();
+    printf("Deseja realmente editar este cliente (s/n)? ");
+    scanf("%c", &resp);
+    if (resp == 's' || resp == 'S') {
+
+      printf("Informe o nome do cliente: ");
+      scanf(" %80[^\n]", cli->nome);
+
+      printf("\nInforme o token do cliente: ");
+      scanf("%d", &cli->token);
+
+      do {
+        printf("Informe o e-mail do cliente: ");
+        scanf(" %50[^\n]", cli->email);
+
+      } while (!lerEmail(cli->email));
+
+    
+      do{
+          printf("Informe o CPF do cliente: ");
+          scanf(" %15[^\n]", cli->cpf);
+      }while(!valida_cpf(cli->cpf));
+
+    
+      do{
+          printf("Informe o celular junto com o DDD do cliente(apenas números): ");
+          scanf(" %19[^\n]", cli->celular);
+      }while(!valida_cel(cli->celular));
+
+
+      do {
+          printf("Data de nascimento:\n");
+          printf("Informe o dia: ");
+          scanf("%d", &cli->dia);
+          printf("Informe o mês: ");
+          scanf("%d", &cli->mes);
+          printf("Informe o an: ");
+          scanf("%d", &cli->ano);
+      } while(!valida_data(cli->dia, cli->mes, cli->ano));
+
+      cli->status = 'a';
+
+      fseek(fp, (-1)*sizeof(Cliente), SEEK_CUR);
+      fwrite(cli, sizeof(Cliente), 1, fp);
+      printf("\n Cliente editado com sucesso!!\n");
+    } else {
+      printf("\nOk, os dados não foram alterados\n");
+    }
+  } else {
+    printf("O cliente %s não foi encontrado...\n", procurado);
+  }
+  free(cli);
+  fclose(fp);
 }
 
 
