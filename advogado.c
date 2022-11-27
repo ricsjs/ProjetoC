@@ -23,6 +23,7 @@ Advogado* buscaAdvogado(void);
 void listaAdvogados(void);
 void excluiAdvogado(Advogado*);
 void exibeAdvogadoAposListagem(Advogado*);
+void editarAdvogado(void);
 
 int menu_advogado(void) {
   Advogado* fulano;
@@ -46,7 +47,8 @@ int menu_advogado(void) {
         case 3 :  listaAdvogados();
             break;
 
-        //case 4: editarAdvogado();
+        case 4: editarAdvogado();
+            break;
 
         case 5: fulano = buscaAdvogado();
             excluiAdvogado(fulano);
@@ -237,6 +239,86 @@ void excluiAdvogado(Advogado* advLido) {
     fclose(fp);
     free(advArq);
   }
+}
+
+void editarAdvogado(void) {
+  FILE* fp;
+  Advogado* adv;
+  int achou;
+  char resp;
+  char procurado[15];
+  fp = fopen("advogados.dat", "r+b");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar o programa...\n");
+    exit(1);
+  }
+  printf("\n\n");
+  printf("= = Editar Advogado = = \n");
+  printf("Informe o nome do advogado a ser alterado: ");
+  scanf(" %14[^\n]", procurado);
+  adv = (Advogado*) malloc(sizeof(Advogado));
+  achou = 0;
+  while((!achou) && (fread(adv, sizeof(Advogado), 1, fp))) {
+   if ((strcmp(adv->nome, procurado) == 0) && (adv->status == 'a')) {
+     achou = 1;
+   }
+  }
+  if (achou) {
+    exibeAdvogado(adv);
+    getchar();
+    printf("Deseja realmente editar este advogado (s/n)? ");
+    scanf("%c", &resp);
+    if (resp == 's' || resp == 'S') {
+
+      printf("Informe o nome do advogado: ");
+      scanf(" %80[^\n]", adv->nome);
+
+      printf("\nInforme o token do advogado: ");
+      scanf("%d", &adv->token);
+
+      do {
+        printf("Informe o e-mail do advogado: ");
+        scanf(" %50[^\n]", adv->email);
+
+      } while (!lerEmail(adv->email));
+
+    
+      do{
+          printf("Informe o CPF do advogado: ");
+          scanf(" %15[^\n]", adv->cpf);
+      }while(!valida_cpf(adv->cpf));
+
+    
+      do{
+          printf("Informe o celular junto com o DDD do advogado(apenas numeros): ");
+          scanf(" %19[^\n]", adv->celular);
+      }while(!valida_cel(adv->celular));
+
+
+      do {
+          printf("Data de nascimento:\n");
+          printf("Informe o dia: ");
+          scanf("%d", &adv->dia);
+          printf("Informe o mês: ");
+          scanf("%d", &adv->mes);
+          printf("Informe o an: ");
+          scanf("%d", &adv->ano);
+      } while(!valida_data(adv->dia, adv->mes, adv->ano));
+
+      adv->status = 'a';
+
+      fseek(fp, (-1)*sizeof(Advogado), SEEK_CUR);
+      fwrite(adv, sizeof(Advogado), 1, fp);
+      printf("\n Adovado editado com sucesso!!\n");
+    } else {
+      printf("\nOk, os dados não foram alterados\n");
+    }
+  } else {
+    printf("O advogado %s não foi encontrado...\n", procurado);
+  }
+  free(adv);
+  fclose(fp);
 }
 
 
