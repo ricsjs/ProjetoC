@@ -23,6 +23,7 @@ Agenda* preencheAgenda(void);
 void exibeAgenda(Agenda*);
 void gravaAgenda(Agenda*);
 Agenda* buscaAgenda(void);
+Agenda* buscaAgendaData(void);
 void listaAgenda(void);
 void excluiAgenda(Agenda*);
 void exibeEventoAposListagem(Agenda*);
@@ -57,6 +58,11 @@ int menu_agenda(void) {
             excluiAgenda(evento);
             free(evento);
             break;
+
+        case 6 :  evento = buscaAgendaData();
+            exibeAgenda(evento);
+            free(evento);
+            break;
     }
     opcao = menuPrincipalag();
   }
@@ -76,6 +82,7 @@ int menuPrincipalag(){
     printf("///    3 - Listar Evento                   ///\n");
     printf("///    4 - Editar Evento                   ///\n");
     printf("///    5 - Excluir Evento                  ///\n");
+    printf("///    6 - Buscar Evento por Data          ///\n");
     printf("///    0 - Volta                           ///\n");
     printf("///                                        ///\n");
     printf("//////////////////////////////////////////////\n");
@@ -159,6 +166,35 @@ void exibeAgenda(Agenda* ag) {
     printf("CPF do Cliente: %s\n", ag->cpf_cli);
     printf("Data do evento: %d/%d/%d\n", ag->dia, ag->mes, ag->ano);
   }
+}
+
+Agenda* buscaAgendaData(void){
+  FILE* fp;
+  Agenda* ag;
+  int diaevento, mesevento, anoevento;
+  printf("\n = Busca Evento = \n"); 
+  printf("Informe o dia do evento: "); 
+  scanf("%d", &diaevento);
+  printf("Informe o mês do evento: "); 
+  scanf("%d", &mesevento);
+  printf("Informe o ano do evento: "); 
+  scanf("%d", &anoevento);
+  ag = (Agenda*) malloc(sizeof(Agenda));
+  fp = fopen("eventos.dat", "ab");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  while(!feof(fp)) {
+    fread(ag, sizeof(Agenda), 1, fp);
+    if ((ag->dia == diaevento) && (ag->mes == mesevento) && (ag->ano == anoevento) && (ag->status != 'i')) {
+      fclose(fp);
+      return ag;
+    }
+  }
+  fclose(fp);
+  return NULL;
 }
 
 Agenda* buscaAgenda(void) {
@@ -258,7 +294,7 @@ void excluiAgenda(Agenda* agLido) {
 }
 
 
-void editarCliente(void) {
+void editarAgenda(void) {
   FILE* fp;
   Agenda* ag;
   int achou;
