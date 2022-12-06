@@ -103,7 +103,7 @@ Agenda* preencheAgenda(void) {
   printf("Informe o nome do advogado: ");
   scanf(" %80[^\n]", ag->nome_adv);
 
-  printf("Informe o nome do advogado: ");
+  printf("Informe o nome do cliente: ");
   scanf(" %80[^\n]", ag->nome_cli);
   
     do{

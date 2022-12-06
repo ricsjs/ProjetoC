@@ -4,7 +4,6 @@
 #include "advogado.h"
 #include "cliente.h"
 #include "agenda.h"
-#include "relatorio.h"
 
 //assinatura de telas
 void login(void);
@@ -77,8 +76,7 @@ void login(void){
         printf("///  1 - ÁREA DO ADVOGADO                                     ///\n");
         printf("///  2 - ÁREA DO CLIENTE                                      ///\n");
         printf("///  3 - AGENDA GERAL                                         ///\n");
-        printf("///  4 - RELATORIO GERAL                                      ///\n");
-        printf("///  5 - SOBRE O PROGRAMA                                     ///\n");
+        printf("///  4 - SOBRE O PROGRAMA                                     ///\n");
         printf("///  0 - SAIR                                                 ///\n");
         printf("///                                                           ///\n");
         printf("/////////////////////////////////////////////////////////////////\n");
@@ -97,10 +95,6 @@ void login(void){
         }else if(opc == 3){
             system("clear||cls");
             menu_agenda();
-        
-        }else if (opc == 4){
-            system("clear||cls");
-            area_relatorio();
 
         }else if(opc == 5){
             system("clear||cls");
