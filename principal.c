@@ -96,7 +96,7 @@ void login(void){
             system("clear||cls");
             menu_agenda();
 
-        }else if(opc == 5){
+        }else if(opc == 4){
             system("clear||cls");
             sobre();            
         } else if (opc == 0){
