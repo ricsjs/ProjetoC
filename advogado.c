@@ -16,17 +16,23 @@ struct advogado {
 };
 
 int menuPrincipaladv(void);
-Advogado* preencheAdvogado(void);
+void preencheAdvogado(void);
 void exibeAdvogado(Advogado*);
-void gravaAdvogado(Advogado*);
-Advogado* buscaAdvogado(void);
+int gravaAdvogado(Advogado* adv); 
 void listaAdvogados(void);
-void excluiAdvogado(Advogado*);
 void exibeAdvogadoAposListagem(Advogado*);
 void editarAdvogado(void);
+int buscaInfoAdv(void);
+int infoExcluirAdv(void);
+int validaAdv(char* cpf);
 
-int menu_advogado(void) {
-  Advogado* fulano;
+int listaInfoAdv(void); 
+int menu_advogado(void) 
+
+
+{
+  system("cls || clear");
+
   int opcao;
   printf("//////////////////////////////////////////////\n");
   printf("///     ===== AREA DOS ADVOGADOS =====     ///\n");
@@ -34,26 +40,23 @@ int menu_advogado(void) {
   opcao = menuPrincipaladv();
   while (opcao != 0) {
     switch (opcao) {
-        case 1 :  fulano = preencheAdvogado();
-            gravaAdvogado(fulano);
-            free(fulano);
+        case 1 : preencheAdvogado();
+        
             break;
 
-        case 2 :  fulano = buscaAdvogado();
-            exibeAdvogado(fulano);
-            free(fulano);
+        case 2 :buscaInfoAdv();
+        
             break;
         
-        case 3 :  listaAdvogados();
+        case 3 :  listaInfoAdv();
             break;
 
         case 4: editarAdvogado();
             break;
 
-        case 5: fulano = buscaAdvogado();
-            excluiAdvogado(fulano);
-            free(fulano);
-            break;
+        case 5: infoExcluirAdv();
+         
+          break;
     }
     opcao = menuPrincipaladv();
   }
@@ -62,6 +65,7 @@ int menu_advogado(void) {
 
 
 int menuPrincipaladv(){
+    system("cls || clear");
     int op;
     printf("\n//////////////////////////////////////////////\n");
     printf("///           ===== MENU =====             ///\n");
@@ -75,23 +79,26 @@ int menuPrincipaladv(){
     printf("///    0 - Voltar                          ///\n");
     printf("///                                        ///\n");
     printf("//////////////////////////////////////////////\n");
+    printf("Escolha uma opção: ");
     scanf("%d", &op);
+    getchar();
     return op;
 }
 
 
-Advogado* preencheAdvogado(void) {
+void preencheAdvogado(void) {
+  system("cls || clear");
   Advogado* adv;
   adv = (Advogado*) malloc(sizeof(Advogado));
   printf("Informe o nome do advogado: ");
   scanf(" %80[^\n]", adv->nome);
+  getchar();
 
-  printf("Informe um token para o advogado: ");
-  scanf("%d", &adv->token);
 
     do {
         printf("Informe o e-mail do advogado: ");
         scanf(" %50[^\n]", adv->email);
+        getchar();
 
     } while (!lerEmail(adv->email));
 
@@ -99,12 +106,14 @@ Advogado* preencheAdvogado(void) {
     do{
         printf("Informe o CPF do advogado: ");
         scanf(" %15[^\n]", adv->cpf);
-    }while(!valida_cpf(adv->cpf));
+        getchar();
+     }while(!((valida_cpf(adv->cpf)) && (validaAdv(adv->cpf))));
 
   
     do{
         printf("Informe o celular junto com o DDD do advogado(apenas numeros): ");
         scanf(" %19[^\n]", adv->celular);
+        getchar();
     }while(!valida_cel(adv->celular));
 
 
@@ -112,29 +121,42 @@ Advogado* preencheAdvogado(void) {
         printf("Data de nascimento:\n");
         printf("Informe o dia: ");
         scanf("%d", &adv->dia);
+        getchar();
         printf("Informe o mês: ");
         scanf("%d", &adv->mes);
-        printf("Informe o an: ");
+        getchar();
+        printf("Informe o ano: ");
         scanf("%d", &adv->ano);
+        getchar();
     } while(!valida_data(adv->dia, adv->mes, adv->ano));
 
     adv->status = 'a';
-    return adv;
+    gravaAdvogado(adv);
+    free(adv);
+    printf("CLiente cadastrado com sucesso!\n");
+    printf("Pressione qualquer tecla para sair... ");
+    getchar();
+
 }
 
-void gravaAdvogado(Advogado* adv) {
-  FILE* fp;
-  fp = fopen("advogados.dat", "ab");
-  if (fp == NULL) {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Não é possível continuar este programa...\n");
-    exit(1);
-  }
-  fwrite(adv, sizeof(Advogado), 1, fp);
-  fclose(fp);
+
+int gravaAdvogado(Advogado* adv) 
+{
+    FILE* fp;
+    fp = fopen("advogados.dat", "ab");
+    if (fp == NULL) {
+        printf("Ops! Não é possível continuar o programa...\n");
+        return 0;
+    }
+    
+    fwrite(adv, sizeof(adv), 1, fp);
+    fclose(fp);
+    return 0;
+
 }
 
 void exibeAdvogado(Advogado* adv) {
+  system("cls || clear");
   if ((adv == NULL) || (adv->status == 'i')) {
     printf("\n= = = Advogado Inexistente = = =\n");
   } else {
@@ -147,32 +169,50 @@ void exibeAdvogado(Advogado* adv) {
   }
 }
 
-Advogado* buscaAdvogado(void) {
-  FILE* fp;
-  Advogado* adv;
-  int buscatoken;
-  printf("\n = Busca Advogado = \n"); 
-  printf("Informe o token: "); 
-  scanf("%d", &buscatoken);
-  adv = (Advogado*) malloc(sizeof(Advogado));
-  fp = fopen("advogados.dat", "ab");
-  if (fp == NULL) {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Não é possível continuar este programa...\n");
-    exit(1);
-  }
-  while(!feof(fp)) {
-    fread(adv, sizeof(Advogado), 1, fp);
-    if ((adv->token == buscatoken) && (adv->status != 'i')) {
-      fclose(fp);
-      return adv;
+int buscaInfoAdv(void)
+{
+    FILE* fp;
+    Advogado* adv;
+    int achou;
+    char procurado[15]; 
+    fp = fopen("advogados.dat", "rb");
+
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }   
+    printf("\n\n");
+    system(" cls || clear ");
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" |                   Buscar dados do Advogado                | \n");
+    printf(" | ========================================================= | \n");
+    printf("Informe o seu cpf: ");
+    scanf(" %30[^\n]", procurado);
+    getchar();   
+    adv = (Advogado*) malloc(sizeof(Advogado));  
+    achou = 0;  
+    while((!achou) && (fread(adv, sizeof(Advogado), 1, fp))) {
+        if ((strcmp(adv->cpf, procurado) == 0) && (adv->status == 'a')) {
+            achou = 1;
+        }
     }
-  }
-  fclose(fp);
-  return NULL;
+    if (achou) {
+        system(" cls || clear" );
+        exibeAdvogadoAposListagem(adv);
+    
+    } else {
+        printf("Os dados do usuário %s não foram encontrados\n", procurado);
+    }
+    free(adv);
+    fclose(fp); 
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
+    return 0; 
 }
 
 void exibeAdvogadoAposListagem(Advogado* adv) {
+  system("cls || clear");
   if ((adv == NULL) || (adv->status == 'i')) {
     printf("\n= = = Advogado Inexistente = = =\n");
   } else {
@@ -185,63 +225,96 @@ void exibeAdvogadoAposListagem(Advogado* adv) {
   }
 }
 
-void listaAdvogados(void) {
-  FILE* fp;
-  Advogado* adv;
-  printf("\n = Lista de Advogados = \n"); 
-  adv = (Advogado*) malloc(sizeof(Advogado));
-  fp = fopen("advogados.dat", "rb");
-  if (fp == NULL) {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Não é possível continuar este programa...\n");
-    exit(1);
-  }
-  while(fread(adv, sizeof(Advogado), 1, fp)) {
-    if (adv->status != 'i') {
-      exibeAdvogadoAposListagem(adv);
-    }else{
-      printf("Não existem advogados cadastrados");
+int listaInfoAdv(void) 
+{
+    FILE* fp;
+    Advogado* adv;
+    
+    fp = fopen("advogados.dat", "rb");
+    
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
     }
-  }
-  fclose(fp);
-  free(adv);
+    adv = (Advogado*)malloc(sizeof(Advogado)); 
+    while(fread(adv, sizeof(Advogado), 1, fp)) {
+        system(" cls || clear");
+        printf(" | ==================== Lista Usuário ====================== | \n");
+        printf(" |                                                           | \n");
+        exibeAdvogadoAposListagem(adv);
+        printf("Pressione qualquer tecla para sair... ");
+        getchar();
+
+    } 
+    fclose(fp);
+    free(adv);
+    return 0;
+
 }
 
-void excluiAdvogado(Advogado* advLido) {
-  FILE* fp;
-  Advogado* advArq;
-  int achou = 0;
-  if (advLido == NULL) {
-    printf("Ops! O advogado informado não existe!\n");
-  }
-  else {
-    advArq = (Advogado*) malloc(sizeof(Advogado));
-    fp = fopen("advogados.dat", "r+b");
-    if (fp == NULL) {
-      printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-      printf("Não é possível continuar este programa...\n");
-      exit(1);
+int infoExcluirAdv(void)
+{
+    FILE* fp;
+    Advogado* adv;
+    int achou;
+    char resp;
+    char procurado[20];
+    
+    fp = fopen("clientes.dat", "r+b");
+
+    if (fp == NULL){
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
     }
-    while(!feof(fp)) {
-      fread(advArq, sizeof(Advogado), 1, fp);
-      if ((advArq->token == advLido->token) && (advArq->status != 'i')) {
-        achou = 1;
-        advArq->status = 'x';
-        fseek(fp, -1*sizeof(Advogado), SEEK_CUR);
-        fwrite(advArq, sizeof(Advogado), 1, fp);
-        printf("\nAdvogado excluído com sucesso!\n");
-        break;
-      }
+    adv = (Advogado*) malloc(sizeof(adv));
+    system( " clear || cls ");
+    printf(" | ============================================================== | \n");
+    printf(" | -------------------------------------------------------------- | \n");
+    printf(" | ---------------------- Excluir Advogado ---------------------- | \n");
+    printf(" |                                                                | \n");
+    printf(" | Informe o CPF do advogado que você quer excluir: ");
+    scanf(" %30[^\n]", procurado);
+    getchar();  
+    achou = 0;
+    
+    while ((!achou) && (fread(adv, sizeof(Advogado), 1, fp))){
+        if ((strcmp(adv->cpf, procurado) == 0) && (adv->status == 'a')){
+            achou = 1;
+        }
     }
-    if (!achou) {
-      printf("\nAdvogado não encontrado!\n");
-    }
-    fclose(fp);
-    free(advArq);
-  }
+   if (achou){
+        exibeAdvogado(adv);
+        printf("Deseja realmente excluir os dados deste usuário? (s/n) \n");
+        scanf("%c", &resp);
+        getchar();
+        
+        if (resp == 's' || resp == 'S'){
+            adv->status = 'i';
+            fseek(fp, (-1)*sizeof(adv), SEEK_CUR);
+            fwrite(adv, sizeof(Advogado), 1, fp);
+            printf("\nUsuário excluído com sucesso!\n");
+            gravaAdvogado(adv);
+            getchar();   
+        }else{
+        
+            printf("\nTudo bem, os dados não foram alterados!");
+        
+        }
+    }else{
+    
+        printf("O usuário não foi encontrado!");
+    
+    }  
+    free(adv);
+    fclose(fp);   
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();  
+    return 0;
+    
 }
 
 void editarAdvogado(void) {
+  system("cls || clear");
   FILE* fp;
   Advogado* adv;
   int achou;
@@ -255,12 +328,13 @@ void editarAdvogado(void) {
   }
   printf("\n\n");
   printf("= = Editar Advogado = = \n");
-  printf("Informe o nome do advogado a ser alterado: ");
-  scanf(" %14[^\n]", procurado);
+  printf("Informe o CPF do advogado: ");
+  scanf(" %20[^\n]", procurado);
+  getchar();
   adv = (Advogado*) malloc(sizeof(Advogado));
   achou = 0;
   while((!achou) && (fread(adv, sizeof(Advogado), 1, fp))) {
-   if ((strcmp(adv->nome, procurado) == 0) && (adv->status == 'a')) {
+   if ((strcmp(adv->cpf, procurado) == 0) && (adv->status == 'a')) {
      achou = 1;
    }
   }
@@ -269,30 +343,25 @@ void editarAdvogado(void) {
     getchar();
     printf("Deseja realmente editar este advogado (s/n)? ");
     scanf("%c", &resp);
+    getchar();
     if (resp == 's' || resp == 'S') {
 
       printf("Informe o nome do advogado: ");
       scanf(" %80[^\n]", adv->nome);
-
-      printf("\nInforme o token do advogado: ");
-      scanf("%d", &adv->token);
+      getchar();
 
       do {
         printf("Informe o e-mail do advogado: ");
         scanf(" %50[^\n]", adv->email);
+        getchar();
 
       } while (!lerEmail(adv->email));
 
     
       do{
-          printf("Informe o CPF do advogado: ");
-          scanf(" %15[^\n]", adv->cpf);
-      }while(!valida_cpf(adv->cpf));
-
-    
-      do{
           printf("Informe o celular junto com o DDD do advogado(apenas numeros): ");
           scanf(" %19[^\n]", adv->celular);
+          getchar();
       }while(!valida_cel(adv->celular));
 
 
@@ -300,10 +369,13 @@ void editarAdvogado(void) {
           printf("Data de nascimento:\n");
           printf("Informe o dia: ");
           scanf("%d", &adv->dia);
+          getchar();
           printf("Informe o mês: ");
           scanf("%d", &adv->mes);
+          getchar();
           printf("Informe o an: ");
           scanf("%d", &adv->ano);
+          getchar();
       } while(!valida_data(adv->dia, adv->mes, adv->ano));
 
       adv->status = 'a';
@@ -322,3 +394,32 @@ void editarAdvogado(void) {
 }
 
 
+int validaAdv(char* cpf)
+{
+    FILE *fp;
+    Advogado *usuarioAdv;
+
+    usuarioAdv = (Advogado*)malloc(sizeof(usuarioAdv));
+    
+    fp = fopen("advogados.dat", "rt");
+    
+    if (fp == NULL)
+    {
+
+        fclose(fp);
+        return 1;
+    } 
+
+    while (!feof(fp))
+    {
+        fread(usuarioAdv, sizeof(Advogado), 1, fp);
+        if (strcmp(cpf, usuarioAdv->cpf) == 0 && (usuarioAdv->status != 'i'))
+        {
+            fclose(fp);
+            return 0;
+        }
+    }
+    fclose(fp);
+    return 1;
+
+}
