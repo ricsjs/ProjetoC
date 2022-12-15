@@ -12,12 +12,13 @@ void sobre(void);
 
 int main(void){
     setlocale(LC_ALL,"portuguese");
-    login();
+    principal();
     printf("Programa finalizado");
 }
 
 
 void login(void){
+    system("cls || clear");
 
     char user, pass;
 
@@ -83,6 +84,7 @@ void login(void){
 
         printf("Digite o número de uma opção: ");
         scanf("%i", &opc);
+        getchar();
         
         if (opc == 1){
             system("clear||cls");
