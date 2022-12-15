@@ -19,18 +19,21 @@ struct agenda {
 };
 
 int menuPrincipalag(void);
-Agenda* preencheAgenda(void);
-void exibeAgenda(Agenda*);
-void gravaAgenda(Agenda*);
-Agenda* buscaAgenda(void);
+void preencheAgenda(void); 
+int buscaInfoAgenda(void);
+int gravaAgenda(Agenda* ag); 
+int listaInfoEvento(void);
 Agenda* buscaAgendaData(void);
 void listaAgenda(void);
-void excluiAgenda(Agenda*);
-void exibeEventoAposListagem(Agenda*);
+int infoExcluirAg(void);
+void exibeEventoAposListagem(Agenda* ag);
 void editarAgenda(void);
+int exibirEventodata(void);
+void exibedata(Agenda* ag);
 
 int menu_agenda(void) {
-  Agenda* evento;
+  system("cls || clear");
+
   int opcao;
   printf("//////////////////////////////////////////////\n");
   printf("///      ===== AREA DOS EVENTOS =====      ///\n");
@@ -38,31 +41,23 @@ int menu_agenda(void) {
   opcao = menuPrincipalag();
   while (opcao != 0) {
     switch (opcao) {
-        case 1 :  evento = preencheAgenda();
-            gravaAgenda(evento);
-            free(evento);
+        case 1 :preencheAgenda();
             break;
 
-        case 2 :  evento = buscaAgenda();
-            exibeAgenda(evento);
-            free(evento);
+        case 2 : buscaInfoAgenda();
             break;
 
-        case 3 :  listaAgenda();
+        case 3 :  listaInfoEvento();
             break;
 
          case 4: editarAgenda();
             break;
 
-        case 5: evento = buscaAgenda();
-            excluiAgenda(evento);
-            free(evento);
+        case 5: infoExcluirAg();
             break;
 
-        case 6 :  evento = buscaAgendaData();
-            exibeAgenda(evento);
-            free(evento);
-            break;
+        case 6 : exibirEventodata();
+           break;
     }
     opcao = menuPrincipalag();
   }
@@ -71,7 +66,8 @@ int menu_agenda(void) {
 
 
 int menuPrincipalag(){
-    
+  
+    system("cls || clear");
     int op;
     printf("\n//////////////////////////////////////////////\n");
     printf("///           ===== MENU =====             ///\n");
@@ -86,45 +82,51 @@ int menuPrincipalag(){
     printf("///    0 - Volta                           ///\n");
     printf("///                                        ///\n");
     printf("//////////////////////////////////////////////\n");
+    printf("Escolha uma opção: ");
     scanf("%d", &op);
+    getchar();
     return op;
 }
 
 
-Agenda* preencheAgenda(void) {
+void preencheAgenda(void) {
   Agenda* ag;
   ag = (Agenda*) malloc(sizeof(Agenda));
   printf("Informe o nome do evento: ");
   scanf(" %80[^\n]", ag->nome);
-
-  printf("Informe um token para o evento: ");
-  scanf("%d", &ag->token);
+  getchar();
 
   printf("Informe o nome do advogado: ");
   scanf(" %80[^\n]", ag->nome_adv);
+  getchar();
 
   printf("Informe o nome do cliente: ");
   scanf(" %80[^\n]", ag->nome_cli);
+  getchar();
   
     do{
         printf("Informe o CPF do advogado: ");
         scanf(" %15[^\n]", ag->cpf_adv);
+        getchar();
     }while(!valida_cpf(ag->cpf_adv));
 
     do{
         printf("Informe o CPF do cliente: ");
         scanf(" %15[^\n]", ag->cpf_cli);
+        getchar();
     }while(!valida_cpf(ag->cpf_cli));
 
   
     do{
         printf("Informe o celular do advogado: ");
         scanf(" %19[^\n]", ag->celular_adv);
+        getchar();
     }while(!valida_cel(ag->celular_adv));
 
     do{
         printf("Informe o celular do cliente: ");
         scanf(" %19[^\n]", ag->celular_cli);
+        getchar();
     }while(!valida_cel(ag->celular_cli));
 
 
@@ -132,29 +134,41 @@ Agenda* preencheAgenda(void) {
         printf("Data do evento:\n");
         printf("Informe o dia: ");
         scanf("%d", &ag->dia);
+        getchar();
         printf("Informe o mês: ");
         scanf("%d", &ag->mes);
+        getchar();
         printf("Informe o ano: ");
         scanf("%d", &ag->ano);
+        getchar();
     } while(!valida_data(ag->dia, ag->mes, ag->ano));
 
     ag->status = 'a';
-    return ag;
+    gravaAgenda(ag);
+    free(ag);
+    printf("Evento cadastrado com sucesso!\n");
+    printf("Pressione qualquer tecla para sair... ");
+    getchar();
+    
 }
 
-void gravaAgenda(Agenda* ag) {
-  FILE* fp;
-  fp = fopen("eventos.dat", "ab");
-  if (fp == NULL) {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Não é possível continuar este programa...\n");
-    exit(1);
-  }
-  fwrite(ag, sizeof(Agenda), 1, fp);
-  fclose(fp);
+int gravaAgenda(Agenda* ag) 
+{
+    FILE* fp;
+    fp = fopen("eventos.dat", "ab");
+    if (fp == NULL) {
+        printf("Ops! Não é possível continuar o programa...\n");
+        return 0;
+    }
+    
+    fwrite(ag, sizeof(Agenda), 1, fp);
+    fclose(fp);
+    return 0;
+
 }
 
 void exibeAgenda(Agenda* ag) {
+  system("cls || clear");
   if ((ag == NULL) || (ag->status == 'i')) {
     printf("\n= = = Evento Inexistente = = =\n");
   } else {
@@ -168,61 +182,77 @@ void exibeAgenda(Agenda* ag) {
   }
 }
 
-Agenda* buscaAgendaData(void){
-  FILE* fp;
-  Agenda* ag;
-  int diaevento, mesevento, anoevento;
-  printf("\n = Busca Evento = \n"); 
-  printf("Informe o dia do evento: "); 
-  scanf("%d", &diaevento);
-  printf("Informe o mês do evento: "); 
-  scanf("%d", &mesevento);
-  printf("Informe o ano do evento: "); 
-  scanf("%d", &anoevento);
-  ag = (Agenda*) malloc(sizeof(Agenda));
-  fp = fopen("eventos.dat", "ab");
-  if (fp == NULL) {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Não é possível continuar este programa...\n");
-    exit(1);
-  }
-  while(!feof(fp)) {
-    fread(ag, sizeof(Agenda), 1, fp);
-    if ((ag->dia == diaevento) && (ag->mes == mesevento) && (ag->ano == anoevento) && (ag->status != 'i')) {
-      fclose(fp);
-      return ag;
+
+int buscaInfoAgenda(void)
+{
+    FILE* fp;
+    Agenda* ag;
+    int achou;
+    char procurado[15]; 
+    fp = fopen("eventos.dat", "rb");
+
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
+    }   
+    printf("\n\n");
+    system(" cls || clear ");
+    printf(" | ========================================================= | \n");
+    printf(" | --------------------------------------------------------- | \n");
+    printf(" |                   Buscar evento da Agenda                 | \n");
+    printf(" | ========================================================= | \n");
+    printf("Informe o nome do evento: ");
+    scanf(" %30[^\n]", procurado);
+    getchar();   
+    ag = (Agenda*) malloc(sizeof(Agenda));  
+    achou = 0;  
+     while((!achou) && (fread(ag, sizeof(Agenda), 1, fp))) {
+        if ((strcmp(ag->nome, procurado) == 0) && (ag->status == 'a')) {
+            achou = 1;
+        }
     }
-  }
-  fclose(fp);
-  return NULL;
+    if (achou) {
+        system(" cls || clear" );
+        exibeEventoAposListagem(ag);
+    
+    } else {
+        printf("Os dados do usuário %s não foram encontrados\n", procurado);
+    }
+    free(ag);
+    fclose(fp); 
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();
+    return 0; 
 }
 
-Agenda* buscaAgenda(void) {
-  FILE* fp;
-  Agenda* ag;
-  int buscatoken;
-  printf("\n = Busca Evento = \n"); 
-  printf("Informe o token: "); 
-  scanf("%d", &buscatoken);
-  ag = (Agenda*) malloc(sizeof(Agenda));
-  fp = fopen("eventos.dat", "ab");
-  if (fp == NULL) {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Não é possível continuar este programa...\n");
-    exit(1);
-  }
-  while(!feof(fp)) {
-    fread(ag, sizeof(Agenda), 1, fp);
-    if ((ag->token == buscatoken) && (ag->status != 'i')) {
-      fclose(fp);
-      return ag;
+int listaInfoEvento(void) 
+{
+    FILE* fp;
+    Agenda* ag;
+    
+    fp = fopen("eventos.dat", "rb");
+    
+    if (fp == NULL) {
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
     }
-  }
-  fclose(fp);
-  return NULL;
+    ag = (Agenda*)malloc(sizeof(Agenda)); 
+    while(fread(ag, sizeof(Agenda), 1, fp)) {
+        system(" cls || clear");
+        printf(" | ==================== Lista Eventos ====================== | \n");
+        printf(" |                                                           | \n");
+        exibeEventoAposListagem(ag);
+        printf("Pressione qualquer tecla para sair...");
+        getchar();
+    } 
+    fclose(fp);
+    free(ag);
+    return 0;
+
 }
 
 void exibeEventoAposListagem(Agenda* ag) {
+  system("cls || clear");
   if ((ag == NULL) || (ag->status == 'i')) {
     printf("\n= = = Evento Inexistente = = =\n");
   } else {
@@ -238,6 +268,7 @@ void exibeEventoAposListagem(Agenda* ag) {
 }
 
 void listaAgenda(void) {
+  system("cls || clear");
   FILE* fp;
   Agenda* ag;
   printf("\n = Lista de Eventos = \n"); 
@@ -259,42 +290,69 @@ void listaAgenda(void) {
   free(ag);
 }
 
-void excluiAgenda(Agenda* agLido) {
-  FILE* fp;
-  Agenda* agArq;
-  int achou = 0;
-  if (agLido == NULL) {
-    printf("Ops! O evento informado não existe!\n");
-  }
-  else {
-    agArq = (Agenda*) malloc(sizeof(Agenda));
+int infoExcluirAg(void)
+{
+    FILE* fp;
+    Agenda* ag;
+    int achou;
+    char resp;
+    char procurado[20];
+    
     fp = fopen("eventos.dat", "r+b");
-    if (fp == NULL) {
-      printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-      printf("Não é possível continuar este programa...\n");
-      exit(1);
+
+    if (fp == NULL){
+        printf("Ops! Erro na abertura do arquivo!\n");
+        return 0;
     }
-    while(!feof(fp)) {
-      fread(agArq, sizeof(Agenda), 1, fp);
-      if ((agArq->token == agLido->token) && (agArq->status != 'i')) {
-        achou = 1;
-        agArq->status = 'x';
-        fseek(fp, -1*sizeof(Agenda), SEEK_CUR);
-        fwrite(agArq, sizeof(Agenda), 1, fp);
-        printf("\nEvento excluído com sucesso!\n");
-        break;
-      }
+    ag = (Agenda*) malloc(sizeof(ag));
+    system( " clear || cls ");
+    printf(" | ============================================================== | \n");
+    printf(" | -------------------------------------------------------------- | \n");
+    printf(" | ---------------------- Excluir Evento  ----------------------- | \n");
+    printf(" |                                                                | \n");
+    printf(" | Informe o nome do evento que você quer excluir: ");
+    scanf(" %30[^\n]", procurado);
+    getchar();  
+    achou = 0;
+    
+    while ((!achou) && (fread(ag, sizeof(Agenda), 1, fp))){
+        if ((strcmp(ag->nome, procurado) == 0) && (ag->status == 'a')){
+            achou = 1;
+        }
     }
-    if (!achou) {
-      printf("\nEvento não encontrado!\n");
-    }
-    fclose(fp);
-    free(agArq);
-  }
+   if (achou){
+        exibeAgenda(ag);
+        printf("Deseja realmente excluir os dados deste usuário? (s/n) \n");
+        scanf("%c", &resp);
+        
+        if (resp == 's' || resp == 'S'){
+            ag->status = 'i';
+            fseek(fp, (-1)*sizeof(Agenda), SEEK_CUR);
+            fwrite(ag, sizeof(ag), 1, fp);
+            printf("\nUsuário excluído com sucesso!\n");
+            gravaAgenda(ag);
+            getchar();   
+        }else{
+        
+            printf("\nTudo bem, os dados não foram alterados!");
+        
+        }
+    }else{
+    
+        printf("O usuário não foi encontrado!");
+    
+    }  
+    free(ag);
+    fclose(fp);   
+    printf(" | Pressione qualquer tecla para sair.... ");
+    getchar();  
+    return 0;
+    
 }
 
 
 void editarAgenda(void) {
+  system("cls || clear");
   FILE* fp;
   Agenda* ag;
   int achou;
@@ -326,35 +384,39 @@ void editarAgenda(void) {
 
       printf("Informe o nome do evento: ");
   scanf(" %80[^\n]", ag->nome);
-
-  printf("Informe um token para o evento: ");
-  scanf("%d", &ag->token);
+  getchar();
 
   printf("Informe o nome do advogado: ");
   scanf(" %80[^\n]", ag->nome_adv);
+  getchar();
 
   printf("Informe o nome do advogado: ");
   scanf(" %80[^\n]", ag->nome_cli);
+  getchar();
   
     do{
         printf("Informe o CPF do advogado: ");
         scanf(" %15[^\n]", ag->cpf_adv);
+        getchar();
     }while(!valida_cpf(ag->cpf_adv));
 
     do{
         printf("Informe o CPF do cliente: ");
         scanf(" %15[^\n]", ag->cpf_cli);
+        getchar();
     }while(!valida_cpf(ag->cpf_cli));
 
   
     do{
         printf("Informe o celular do advogado: ");
         scanf(" %19[^\n]", ag->celular_adv);
+        getchar();
     }while(!valida_cel(ag->celular_adv));
 
     do{
         printf("Informe o celular do cliente: ");
         scanf(" %19[^\n]", ag->celular_cli);
+        getchar();
     }while(!valida_cel(ag->celular_cli));
 
 
@@ -362,10 +424,13 @@ void editarAgenda(void) {
         printf("Data do evento:\n");
         printf("Informe o dia: ");
         scanf("%d", &ag->dia);
+        getchar();
         printf("Informe o mês: ");
         scanf("%d", &ag->mes);
+        getchar();
         printf("Informe o ano: ");
         scanf("%d", &ag->ano);
+        getchar();
     } while(!valida_data(ag->dia, ag->mes, ag->ano));
 
     ag->status = 'a';
@@ -384,3 +449,48 @@ void editarAgenda(void) {
 }
 
 
+
+int exibirEventodata(void)
+{
+    FILE* fp;
+    Agenda* ag;
+
+    
+    fp = fopen("eventos.dat", "rb");
+
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro ao abrir o arquivo!\n");
+        return 0;
+    }
+    
+    system ( " clear||cls " );
+    printf(" | ==================================================================== | \n");
+    printf(" | -------------------------------------------------------------------- | \n");
+    printf(" | ------------------| Relatório de eventos por dada |----------------- | \n");
+    printf(" |                                                                      | \n");
+    ag = (Agenda*) malloc(sizeof(Agenda));
+  
+
+    while (fread(ag, sizeof(Agenda), 1, fp)){ 
+      exibedata(ag);
+  }
+    
+    free(ag);
+    fclose(fp);
+    getchar();
+
+    return 0;
+
+} 
+
+
+void exibedata(Agenda* ag)
+{
+  printf("Nome do evento: %s\n", ag->nome);
+  printf("Data de devolução: %d/%d/%d\n", ag->dia, ag->mes, ag->ano);
+  printf("\n");
+  printf("Pressione qualquer tecla para sair..");
+  getchar();
+
+}
