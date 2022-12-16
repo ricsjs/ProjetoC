@@ -133,7 +133,7 @@ void preencheAdvogado(void) {
     adv->status = 'a';
     gravaAdvogado(adv);
     free(adv);
-    printf("CLiente cadastrado com sucesso!\n");
+    printf("Advogado cadastrado com sucesso!\n");
     printf("Pressione qualquer tecla para sair... ");
     getchar();
 
@@ -260,7 +260,7 @@ int infoExcluirAdv(void)
     char resp;
     char procurado[20];
     
-    fp = fopen("clientes.dat", "r+b");
+    fp = fopen("advogados.dat", "r+b");
 
     if (fp == NULL){
         printf("Ops! Erro na abertura do arquivo!\n");
